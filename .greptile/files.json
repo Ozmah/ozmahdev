@@ -1,0 +1,20 @@
+{
+	"files": [
+		{
+			"path": "package.json",
+			"description": "Project scripts and dependency surface. `glados` is the primary quality gate: Biome check, TypeScript check, and production build."
+		},
+		{
+			"path": "src/styles.css",
+			"description": "Global OzmahDev token foundation: Tailwind v4 theme tokens, colors, typography aliases, spacing, focus, motion, button component classes, and global base styles."
+		},
+		{
+			"path": "src/components/ui/button.tsx",
+			"description": "Custom button primitive. Supports primary, secondary, and tertiary variants with accessible focus state and disabled handling. Hero CTA audio should be opt-in, not global button behavior."
+		},
+		{
+			"path": "src/routes/aperture.tsx",
+			"description": "Internal component lab / visual torture room. Used before building real pages to expose spacing, sizing, focus, responsive, and context-dependency problems."
+		}
+	]
+}
