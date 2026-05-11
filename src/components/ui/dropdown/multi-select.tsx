@@ -44,7 +44,8 @@ export function MultiSelect({
 	const listboxRef = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement>(null);
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
-	const { anchorName, open, popoverRef, setOpen } = useAnchoredPopover();
+	const { anchorName, handlePopoverToggle, open, popoverRef, setOpen } =
+		useAnchoredPopover();
 	const selectedValues = new Set(values);
 	const summary = getMultiSelectSummary(options, values, placeholder);
 
@@ -120,6 +121,7 @@ export function MultiSelect({
 
 			<div
 				className="dropdown-popover z-50 mt-1"
+				onToggle={handlePopoverToggle}
 				popover="auto"
 				ref={popoverRef}
 				style={getAnchorStyle(anchorName)}

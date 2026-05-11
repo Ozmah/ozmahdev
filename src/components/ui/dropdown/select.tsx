@@ -45,7 +45,8 @@ export function Select({
 	const listboxRef = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement>(null);
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
-	const { anchorName, open, popoverRef, setOpen } = useAnchoredPopover();
+	const { anchorName, handlePopoverToggle, open, popoverRef, setOpen } =
+		useAnchoredPopover();
 	const selectedLabel = getOptionLabel(options, value);
 
 	function openList() {
@@ -118,6 +119,7 @@ export function Select({
 
 			<div
 				className="dropdown-popover z-50 mt-1"
+				onToggle={handlePopoverToggle}
 				popover="auto"
 				ref={popoverRef}
 				style={getAnchorStyle(anchorName)}

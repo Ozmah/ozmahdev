@@ -1,12 +1,5 @@
-import type { KeyboardEvent, RefObject } from "react";
-import {
-	useCallback,
-	useEffect,
-	useId,
-	useMemo,
-	useRef,
-	useState,
-} from "react";
+import type { KeyboardEvent, RefObject, SyntheticEvent } from "react";
+import { useCallback, useId, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import type { DropdownAnchorStyle, DropdownOption } from "./types";
 
@@ -136,23 +129,14 @@ export function useAnchoredPopover() {
 		}
 	}, []);
 
-	useEffect(() => {
-		const popover = popoverRef.current;
+	const handlePopoverToggle = useCallback(
+		(event: SyntheticEvent<HTMLDivElement>) => {
+			setOpenState(event.currentTarget.matches(":popover-open"));
+		},
+		[],
+	);
 
-		if (!popover) {
-			return;
-		}
-
-		function handleToggle() {
-			setOpenState(popover?.matches(":popover-open") ?? false);
-		}
-
-		popover.addEventListener("toggle", handleToggle);
-
-		return () => popover.removeEventListener("toggle", handleToggle);
-	}, []);
-
-	return { anchorName, open, popoverRef, setOpen };
+	return { anchorName, handlePopoverToggle, open, popoverRef, setOpen };
 }
 
 export function focusElement<T extends HTMLElement>(ref: RefObject<T | null>) {

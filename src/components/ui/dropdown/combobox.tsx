@@ -48,7 +48,8 @@ export function Combobox({
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
 	const [query, setQuery] = useState("");
 	const [hasSearchInput, setHasSearchInput] = useState(false);
-	const { anchorName, open, popoverRef, setOpen } = useAnchoredPopover();
+	const { anchorName, handlePopoverToggle, open, popoverRef, setOpen } =
+		useAnchoredPopover();
 	const selectedLabel = getOptionLabel(options, value) ?? "";
 	const inputValue = open && hasSearchInput ? query : selectedLabel;
 	const filteredOptions = useMemo(
@@ -208,6 +209,7 @@ export function Combobox({
 
 			<div
 				className="dropdown-popover z-50 mt-1"
+				onToggle={handlePopoverToggle}
 				popover="auto"
 				ref={popoverRef}
 				style={getAnchorStyle(anchorName)}
