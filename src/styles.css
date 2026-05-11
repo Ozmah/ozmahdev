@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Chakra+Petch:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+@source "./";
 
 @font-face {
   font-family: "Monaspace Krypton";
@@ -29,460 +30,170 @@
     "SFMono-Regular", Consolas, monospace;
 }
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-muted: var(--muted);
+  --color-dim: var(--dim);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+}
+
 :root {
-  --oz-color-bg: var(--color-oz-black);
-  --oz-color-surface: var(--color-oz-surface);
-  --oz-color-text: var(--color-oz-white);
-  --oz-color-text-muted: var(--color-oz-muted);
-  --oz-color-accent: var(--color-oz-lime);
-  --oz-color-accent-strong: var(--color-oz-pink);
-  --oz-gradient-signal: linear-gradient(
+  color-scheme: dark;
+
+  --background: var(--color-oz-black);
+  --foreground: var(--color-oz-white);
+  --surface: var(--color-oz-surface);
+  --surface-raised: var(--color-oz-surface-raised);
+  --border: var(--color-oz-line);
+  --border-strong: var(--color-oz-line-strong);
+  --muted: var(--color-oz-muted);
+  --dim: var(--color-oz-dim);
+  --accent: var(--color-oz-lime);
+  --accent-strong: var(--color-oz-pink);
+  --primary: var(--accent);
+  --primary-foreground: var(--background);
+  --gradient-signal: linear-gradient(
     135deg,
     var(--color-oz-pink) 0%,
     var(--color-oz-lime) 100%
   );
 
-  --oz-space-1: 0.25rem;
-  --oz-space-2: 0.5rem;
-  --oz-space-3: 0.75rem;
-  --oz-space-4: 1rem;
-  --oz-space-5: 1.25rem;
-  --oz-space-6: 1.5rem;
-  --oz-space-8: 2rem;
-  --oz-space-10: 2.5rem;
-  --oz-space-12: 3rem;
-  --oz-space-16: 4rem;
-
-  --oz-border-width: 1px;
-  --oz-border-radius: 0;
-  --oz-focus-width: 2px;
-  --oz-focus-offset: 4px;
-  --oz-duration-fast: 120ms;
-  --oz-duration-base: 180ms;
-  --oz-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --oz-shell-inline-padding: clamp(1rem, 4vw, 3rem);
+  --shell-inline-padding: clamp(1rem, 4vw, 3rem);
 }
 
-* {
-  box-sizing: border-box;
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-color: var(--dim) transparent;
+    scrollbar-gutter: stable;
+    scrollbar-width: auto;
+  }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-oz-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--background);
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  :focus-visible {
+    outline: 2px dashed var(--accent);
+    outline-offset: 4px;
+  }
 }
 
-html,
-body,
-#app {
-  min-height: 100%;
-}
-
-html {
-  scroll-behavior: smooth;
-  scrollbar-color: var(--color-oz-dim) transparent;
-  scrollbar-gutter: stable;
-  scrollbar-width: auto;
-}
-
-body {
-  margin: 0;
-  background: var(--oz-color-bg);
-  color: var(--oz-color-text);
-  font-family: var(--font-oz-sans);
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background: var(--color-oz-lime);
-  color: var(--color-oz-black);
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-:focus-visible {
-  outline: var(--oz-focus-width) dashed var(--color-oz-lime);
-  outline-offset: var(--oz-focus-offset);
-}
-
-.oz-shell {
+@utility oz-shell {
   min-height: 100dvh;
-  padding-inline: var(--oz-shell-inline-padding);
+  padding-inline: var(--shell-inline-padding);
 }
 
-.oz-full-bleed {
-  margin-inline: calc(var(--oz-shell-inline-padding) * -1);
+@utility oz-full-bleed {
+  margin-inline: calc(var(--shell-inline-padding) * -1);
 }
 
-.oz-skip-link {
-  background: var(--color-oz-lime);
-  color: var(--color-oz-black);
+@utility oz-skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  transform: translateY(calc(-100% - 1rem));
+  background: var(--accent);
+  color: var(--background);
+  padding: 0.5rem 0.75rem;
   font-family: var(--font-oz-mono);
   font-size: 0.875rem;
   font-weight: 800;
-  left: var(--oz-space-4);
-  padding: var(--oz-space-2) var(--oz-space-3);
-  position: fixed;
   text-transform: uppercase;
-  top: var(--oz-space-4);
-  transform: translateY(calc(-100% - var(--oz-space-4)));
-  transition: transform var(--oz-duration-fast) var(--oz-ease-out);
-  z-index: 100;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:focus-visible {
+    transform: translateY(0);
+  }
 }
 
-.oz-skip-link:focus-visible {
-  transform: translateY(0);
+@utility powerline-segment {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 0.7rem) 0,
+    100% 50%,
+    calc(100% - 0.7rem) 100%,
+    0 100%,
+    0.7rem 50%
+  );
 }
 
-@layer components {
-  .oz-button {
-    align-items: center;
-    border-radius: var(--oz-border-radius);
-    border: var(--oz-border-width) solid transparent;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: var(--font-oz-action);
-    font-size: clamp(1rem, 0.92rem + 0.4vw, 1.25rem);
-    font-weight: 900;
-    gap: var(--oz-space-4);
-    justify-content: center;
-    letter-spacing: 0.02em;
-    line-height: 1;
-    min-height: 3.75rem;
-    min-width: 12rem;
-    padding: 1rem 1.5rem;
-    text-transform: uppercase;
-    transition:
-      background-color var(--oz-duration-base) var(--oz-ease-out),
-      border-color var(--oz-duration-base) var(--oz-ease-out),
-      color var(--oz-duration-base) var(--oz-ease-out),
-      transform var(--oz-duration-fast) var(--oz-ease-out);
+@utility dropdown-anchor {
+  anchor-name: var(--dropdown-anchor-name);
+}
+
+@utility dropdown-popover {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  inset: auto;
+  margin: 0;
+  max-block-size: min(22rem, calc(100dvh - 2rem));
+  overflow: visible;
+  padding: 0;
+  position: fixed;
+  position-anchor: var(--dropdown-anchor-name);
+  position-area: bottom span-right;
+  position-try-fallbacks: flip-block;
+  position-visibility: anchors-visible;
+  width: anchor-size(width);
+}
+
+@utility dropdown-panel {
+  max-block-size: min(22rem, calc(100dvh - 2rem));
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--dim) transparent;
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  .oz-button:disabled,
-  .oz-button[aria-disabled="true"] {
-    cursor: not-allowed;
-    opacity: 0.45;
-    transform: none;
-  }
-
-  .oz-field {
-    display: grid;
-    gap: var(--oz-space-2);
-    width: min(100%, 32rem);
-  }
-
-  .oz-field__label {
-    color: var(--color-oz-lime);
-    font-family: var(--font-oz-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    line-height: 1.2;
-    text-transform: uppercase;
-  }
-
-  .oz-field__control {
-    background: var(--color-oz-black);
-    border: var(--oz-border-width) solid var(--color-oz-line-strong);
-    border-radius: var(--oz-border-radius);
-    color: var(--color-oz-white);
-    font-family: var(--font-oz-sans);
-    font-size: 1rem;
-    line-height: 1.5;
-    min-height: 3.25rem;
-    padding: 0.85rem 1rem;
-    transition:
-      background-color var(--oz-duration-base) var(--oz-ease-out),
-      border-color var(--oz-duration-base) var(--oz-ease-out),
-      box-shadow var(--oz-duration-base) var(--oz-ease-out),
-      color var(--oz-duration-base) var(--oz-ease-out);
-    width: 100%;
-  }
-
-  .oz-field__control::placeholder {
-    color: var(--color-oz-dim);
-  }
-
-  .oz-field__control:focus-visible {
-    border-color: var(--color-oz-lime);
-    box-shadow: 0 0 0 1px var(--color-oz-lime);
-  }
-
-  .oz-field__control:disabled {
-    background: color-mix(in srgb, var(--color-oz-surface) 60%, black);
-    border-color: color-mix(in srgb, var(--color-oz-line) 70%, black);
-    color: var(--color-oz-dim);
-    cursor: not-allowed;
-  }
-
-  .oz-field__control[aria-invalid="true"] {
-    border-color: var(--color-oz-pink);
-    box-shadow: 0 0 0 1px var(--color-oz-pink);
-  }
-
-  .oz-field__control--textarea {
-    min-height: 10rem;
-    resize: vertical;
-  }
-
-  .oz-field__description,
-  .oz-field__error {
-    font-family: var(--font-oz-mono);
-    font-size: 0.8125rem;
-    line-height: 1.45;
-  }
-
-  .oz-field__description {
-    color: var(--color-oz-muted);
-  }
-
-  .oz-field__error {
-    color: var(--color-oz-pink);
-  }
-
-  .oz-terminal {
-    background: var(--color-oz-black);
-    border: var(--oz-border-width) solid var(--color-oz-line-strong);
-    color: var(--color-oz-white);
-    font-family: var(--font-oz-mono);
-    overflow: hidden;
-    width: min(100%, 48rem);
-  }
-
-  .oz-terminal--powershell {
-    background: #080808;
-  }
-
-  .oz-terminal--ubuntu {
-    background: #211f2d;
-  }
-
-  .oz-terminal--minimal {
-    background: var(--color-oz-surface);
-  }
-
-  .oz-terminal__chrome {
-    align-items: stretch;
-    background: #2f2f2f;
-    border-bottom: var(--oz-border-width) solid color-mix(in srgb, #ffffff 12%, transparent);
-    display: flex;
-    min-height: 2.65rem;
-  }
-
-  .oz-terminal--ubuntu .oz-terminal__chrome {
-    background: #2f2d33;
-  }
-
-  .oz-terminal--minimal .oz-terminal__chrome {
-    background: var(--color-oz-surface-raised);
-  }
-
-  .oz-terminal__tab {
-    align-items: center;
-    background: #151515;
-    display: flex;
-    gap: var(--oz-space-2);
-    min-width: 11rem;
-    padding: 0 var(--oz-space-3);
-  }
-
-  .oz-terminal--ubuntu .oz-terminal__tab {
-    background: #211f2d;
-  }
-
-  .oz-terminal--minimal .oz-terminal__tab {
-    background: transparent;
-  }
-
-  .oz-terminal__icon {
-    align-items: center;
-    background: var(--color-oz-lime);
-    color: var(--color-oz-black);
-    display: inline-flex;
-    font-size: 0.65rem;
-    font-weight: 800;
-    height: 1rem;
-    justify-content: center;
-    line-height: 1;
-    width: 1rem;
-  }
-
-  .oz-terminal--powershell .oz-terminal__icon {
-    background: #3b82f6;
-    color: #ffffff;
-  }
-
-  .oz-terminal--ubuntu .oz-terminal__icon {
-    background: #e95420;
-    color: #ffffff;
-  }
-
-  .oz-terminal__title {
-    color: var(--color-oz-white);
-    font-size: 0.8rem;
-    font-weight: 700;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .oz-terminal__toolbar {
-    align-items: center;
-    border-left: var(--oz-border-width) solid color-mix(in srgb, #ffffff 10%, transparent);
-    color: var(--color-oz-muted);
-    display: flex;
-    gap: var(--oz-space-3);
-    padding: 0 var(--oz-space-3);
-  }
-
-  .oz-terminal__window-controls {
-    display: grid;
-    grid-template-columns: repeat(3, 2.75rem);
-    margin-left: auto;
-  }
-
-  .oz-terminal__control {
-    align-items: center;
-    color: var(--color-oz-white);
-    display: inline-flex;
-    font-size: 0.875rem;
-    justify-content: center;
-  }
-
-  .oz-terminal__control--close {
-    background: #c42b1c;
-  }
-
-  .oz-terminal__body {
-    min-height: 16rem;
-    padding: var(--oz-space-4);
-  }
-
-  .oz-terminal__line {
-    color: var(--color-oz-muted);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    margin: 0;
-    white-space: pre-wrap;
-  }
-
-  .oz-terminal__line--command {
-    color: var(--color-oz-white);
-  }
-
-  .oz-terminal__line--success {
-    color: var(--color-oz-lime);
-  }
-
-  .oz-terminal__line--muted {
-    color: var(--color-oz-dim);
-  }
-
-  .oz-powerline {
-    align-items: center;
-    display: flex;
-    font-size: 0.9rem;
-    gap: 0.15rem;
-    line-height: 1;
-    margin-bottom: var(--oz-space-3);
-  }
-
-  .oz-powerline__prompt {
-    color: #8cff00;
-    font-weight: 800;
-  }
-
-  .oz-powerline__segment {
-    background: var(--color-oz-muted);
-    clip-path: polygon(0 0, calc(100% - 0.7rem) 0, 100% 50%, calc(100% - 0.7rem) 100%, 0 100%, 0.7rem 50%);
-    color: var(--color-oz-black);
-    font-weight: 800;
-    padding: 0.35rem 0.95rem;
-  }
-
-  .oz-powerline__segment--path {
-    background: #3b4252;
-    color: var(--color-oz-white);
-  }
-
-  .oz-powerline__segment--time {
-    background: var(--color-oz-white);
-    color: var(--color-oz-black);
-    margin-left: auto;
-  }
-
-  .oz-terminal__cursor {
-    background: #7c3aed;
-    display: inline-block;
-    height: 1.15em;
-    margin-left: 0.35rem;
-    transform: translateY(0.2em);
-    width: 0.55rem;
-  }
-
-  .oz-button__icon {
-    display: inline-flex;
-    font-family: var(--font-oz-mono);
-    font-size: 1.35em;
-    line-height: 1;
-    transition: transform var(--oz-duration-fast) var(--oz-ease-out);
-  }
-
-  .oz-button--primary {
-    background: var(--color-oz-lime);
-    color: var(--color-oz-black);
-  }
-
-  .oz-button--secondary {
-    background: transparent;
-    border-color: var(--color-oz-line-strong);
-    color: var(--color-oz-white);
-  }
-
-  .oz-button--tertiary {
-    background: transparent;
-    border-color: var(--color-oz-pink);
-    color: var(--color-oz-pink);
-  }
-
-  @media (hover: hover) {
-    .oz-button:not(:disabled):not([aria-disabled="true"]):hover {
-      transform: translateY(-1px);
-    }
-
-    .oz-button:not(:disabled):not([aria-disabled="true"]):hover .oz-button__icon {
-      transform: translateX(0.25rem);
-    }
-
-    .oz-button--primary:not(:disabled):not([aria-disabled="true"]):hover {
-      background: var(--color-oz-pink);
-    }
-
-    .oz-button--secondary:not(:disabled):not([aria-disabled="true"]):hover {
-      border-color: var(--color-oz-white);
-      color: var(--color-oz-pink);
-    }
-
-    .oz-button--tertiary:not(:disabled):not([aria-disabled="true"]):hover {
-      background: var(--color-oz-pink);
-      color: var(--color-oz-black);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    .oz-button,
-    .oz-button__icon {
-      transition: none;
-    }
-
-    .oz-button:not(:disabled):not([aria-disabled="true"]):hover,
-    .oz-button:not(:disabled):not([aria-disabled="true"]):hover .oz-button__icon {
-      transform: none;
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
   }
 }

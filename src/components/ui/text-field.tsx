@@ -1,5 +1,10 @@
-import type { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import type {
+	InputHTMLAttributes,
+	ReactNode,
+	TextareaHTMLAttributes,
+} from "react";
 import { useId } from "react";
+import { cn } from "@/lib/cn";
 
 type TextInputProps = Omit<
 	InputHTMLAttributes<HTMLInputElement>,
@@ -35,7 +40,7 @@ export function TextInput({
 	const describedBy = [descriptionId, errorId, props["aria-describedby"]]
 		.filter(Boolean)
 		.join(" ");
-	const classes = ["oz-field__control", className].filter(Boolean).join(" ");
+	const classes = cn(fieldControlClassName, className);
 
 	return (
 		<Field
@@ -73,13 +78,7 @@ export function TextArea({
 	const describedBy = [descriptionId, errorId, props["aria-describedby"]]
 		.filter(Boolean)
 		.join(" ");
-	const classes = [
-		"oz-field__control",
-		"oz-field__control--textarea",
-		className,
-	]
-		.filter(Boolean)
-		.join(" ");
+	const classes = cn(fieldControlClassName, "min-h-40 resize-y", className);
 
 	return (
 		<Field
@@ -110,7 +109,7 @@ function Field({
 	id,
 	label,
 }: {
-	children: React.ReactNode;
+	children: ReactNode;
 	description?: string;
 	descriptionId?: string;
 	error?: string;
@@ -119,21 +118,33 @@ function Field({
 	label: string;
 }) {
 	return (
-		<div className="oz-field">
-			<label className="oz-field__label" htmlFor={id}>
+		<div className="grid w-full max-w-[32rem] gap-2">
+			<label
+				className="font-oz-mono text-accent text-xs font-bold leading-tight tracking-[0.12em] uppercase"
+				htmlFor={id}
+			>
 				{label}
 			</label>
 			{children}
 			{description ? (
-				<p className="oz-field__description" id={descriptionId}>
+				<p
+					className="font-oz-mono text-muted text-[0.8125rem] leading-[1.45]"
+					id={descriptionId}
+				>
 					{description}
 				</p>
 			) : null}
 			{error ? (
-				<p className="oz-field__error" id={errorId}>
+				<p
+					className="font-oz-mono text-accent-strong text-[0.8125rem] leading-[1.45]"
+					id={errorId}
+				>
 					{error}
 				</p>
 			) : null}
 		</div>
 	);
 }
+
+const fieldControlClassName =
+	"min-h-13 w-full border border-border-strong bg-background px-4 py-[0.85rem] font-oz-sans text-base leading-6 text-foreground transition-[background-color,border-color,box-shadow,color] duration-200 ease-out placeholder:text-dim focus-visible:border-accent focus-visible:ring-1 focus-visible:ring-accent disabled:cursor-not-allowed disabled:border-border disabled:bg-surface disabled:text-dim aria-invalid:border-accent-strong aria-invalid:ring-1 aria-invalid:ring-accent-strong";

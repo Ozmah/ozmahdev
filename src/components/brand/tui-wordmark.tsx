@@ -6,7 +6,7 @@
  * rectangles. That gives the site a custom wordmark language while keeping the
  * output scalable, crisp, and accessible.
  */
-import { GLYPHS } from "./glyphs";
+import { GLYPHS, type Glyph, ROWS } from "./glyphs";
 
 type WordmarkTone = "citrus" | "lime" | "mixed" | "muted" | "pink" | "white";
 
@@ -19,15 +19,6 @@ interface TuiWordmarkProps {
 	text: string;
 	tone?: WordmarkTone;
 }
-
-interface Glyph {
-	rows: string[];
-	width: number;
-}
-
-// Every glyph uses the same vertical grid. Lowercase letters use empty rows to
-// simulate x-height/ascenders/descenders instead of simply shrinking capitals.
-const ROWS = 9;
 
 // The fallback intentionally looks like a question mark so missing glyphs are
 // obvious in `/aperture` instead of silently shipping as broken branding.
@@ -50,14 +41,6 @@ const SPACE_GLYPH: Glyph = {
 	width: 3,
 	rows: Array.from({ length: ROWS }, () => "000"),
 };
-
-/** Creates a variable-width glyph while keeping row data as the single source of truth. */
-export function glyph(rows: string[]): Glyph {
-	return {
-		rows,
-		width: rows[0]?.length ?? 0,
-	};
-}
 
 /**
  * Renders a custom TUI bitmap wordmark as crisp SVG cells.

@@ -22,7 +22,7 @@ export function WordmarkSection() {
 					/>
 					<TuiWordmark
 						className="h-auto w-full max-w-xl"
-						text="omintool"
+						text="omnitool"
 						tone="white"
 					/>
 				</AperturePanel>

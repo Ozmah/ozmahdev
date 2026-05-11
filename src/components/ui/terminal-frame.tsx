@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/cn";
 
 type TerminalVariant = "minimal" | "powershell" | "ubuntu";
 type TerminalLineTone = "command" | "muted" | "normal" | "success";
@@ -28,55 +29,98 @@ export function TerminalFrame({
 	title,
 	variant = "minimal",
 }: TerminalFrameProps) {
-	const classes = ["oz-terminal", `oz-terminal--${variant}`, className]
-		.filter(Boolean)
-		.join(" ");
-
 	return (
-		<section aria-label={ariaLabel ?? title} className={classes}>
-			<div aria-hidden="true" className="oz-terminal__chrome">
-				<div className="oz-terminal__tab">
-					<span className="oz-terminal__icon">{getTerminalIcon(variant)}</span>
-					<span className="oz-terminal__title">{title}</span>
+		<section
+			aria-label={ariaLabel ?? title}
+			className={cn(
+				"w-full max-w-3xl overflow-hidden border border-border-strong font-oz-mono text-foreground",
+				terminalFrameVariants[variant],
+				className,
+			)}
+		>
+			<div
+				aria-hidden="true"
+				className={cn(
+					"flex min-h-[2.65rem] items-stretch border-white/10 border-b",
+					terminalChromeVariants[variant],
+				)}
+			>
+				<div
+					className={cn(
+						"flex min-w-44 items-center gap-2 px-3",
+						terminalTabVariants[variant],
+					)}
+				>
+					<span
+						className={cn(
+							"inline-flex size-4 items-center justify-center bg-accent text-[0.65rem] font-extrabold leading-none text-background",
+							terminalIconVariants[variant],
+						)}
+					>
+						{getTerminalIcon(variant)}
+					</span>
+					<span className="overflow-hidden text-ellipsis whitespace-nowrap font-bold text-[0.8rem] text-foreground">
+						{title}
+					</span>
 				</div>
-				<div className="oz-terminal__toolbar">
+				<div className="flex items-center gap-3 border-white/10 border-l px-3 text-muted">
 					<span>+</span>
 					<span>⌄</span>
 				</div>
-				<div className="oz-terminal__window-controls">
-					<span className="oz-terminal__control">−</span>
-					<span className="oz-terminal__control">□</span>
-					<span className="oz-terminal__control oz-terminal__control--close">
+				<div className="ml-auto grid grid-cols-[repeat(3,2.75rem)]">
+					<span className="inline-flex items-center justify-center text-sm text-foreground">
+						−
+					</span>
+					<span className="inline-flex items-center justify-center text-sm text-foreground">
+						□
+					</span>
+					<span className="inline-flex items-center justify-center bg-[#c42b1c] text-sm text-white">
 						×
 					</span>
 				</div>
 			</div>
-			<div className="oz-terminal__body">{children}</div>
+			<div className="min-h-64 p-4">{children}</div>
 		</section>
 	);
 }
 
 export function TerminalLine({ children, tone = "normal" }: TerminalLineProps) {
-	const classes = [
-		"oz-terminal__line",
-		tone !== "normal" ? `oz-terminal__line--${tone}` : undefined,
-	]
-		.filter(Boolean)
-		.join(" ");
-
-	return <p className={classes}>{children}</p>;
+	return (
+		<p
+			className={cn(
+				"m-0 whitespace-pre-wrap text-[0.95rem] leading-[1.65] text-muted",
+				terminalLineTones[tone],
+			)}
+		>
+			{children}
+		</p>
+	);
 }
 
 export function PowerlinePrompt({ path, time }: PowerlinePromptProps) {
 	return (
-		<div className="oz-powerline" role="presentation">
-			<span className="oz-powerline__prompt">›</span>
-			<span className="oz-powerline__segment">~</span>
-			<span className="oz-powerline__segment oz-powerline__segment--path">
+		<div
+			aria-hidden="true"
+			className="mb-3 flex items-center gap-[0.15rem] text-sm leading-none"
+		>
+			<span className="font-extrabold text-[#8cff00]">›</span>
+			<span
+				className={cn(powerlineSegmentClassName, "bg-muted text-background")}
+			>
+				~
+			</span>
+			<span
+				className={cn(powerlineSegmentClassName, "bg-[#3b4252] text-white")}
+			>
 				{path}
 			</span>
 			{time ? (
-				<span className="oz-powerline__segment oz-powerline__segment--time">
+				<span
+					className={cn(
+						powerlineSegmentClassName,
+						"ml-auto bg-foreground text-background",
+					)}
+				>
 					{time}
 				</span>
 			) : null}
@@ -85,7 +129,12 @@ export function PowerlinePrompt({ path, time }: PowerlinePromptProps) {
 }
 
 export function TerminalCursor() {
-	return <span aria-hidden="true" className="oz-terminal__cursor" />;
+	return (
+		<span
+			aria-hidden="true"
+			className="ml-1.5 inline-block h-[1.15em] w-[0.55rem] translate-y-[0.2em] bg-[#7c3aed]"
+		/>
+	);
 }
 
 function getTerminalIcon(variant: TerminalVariant) {
@@ -99,3 +148,37 @@ function getTerminalIcon(variant: TerminalVariant) {
 
 	return "$_";
 }
+
+const terminalFrameVariants: Record<TerminalVariant, string> = {
+	minimal: "bg-surface",
+	powershell: "bg-[#080808]",
+	ubuntu: "bg-[#211f2d]",
+};
+
+const terminalChromeVariants: Record<TerminalVariant, string> = {
+	minimal: "bg-surface-raised",
+	powershell: "bg-[#2f2f2f]",
+	ubuntu: "bg-[#2f2d33]",
+};
+
+const terminalTabVariants: Record<TerminalVariant, string> = {
+	minimal: "bg-transparent",
+	powershell: "bg-[#151515]",
+	ubuntu: "bg-[#211f2d]",
+};
+
+const terminalIconVariants: Record<TerminalVariant, string> = {
+	minimal: "",
+	powershell: "bg-[#3b82f6] text-white",
+	ubuntu: "bg-[#e95420] text-white",
+};
+
+const terminalLineTones: Record<TerminalLineTone, string> = {
+	command: "text-foreground",
+	muted: "text-dim",
+	normal: "",
+	success: "text-accent",
+};
+
+const powerlineSegmentClassName =
+	"powerline-segment px-[0.95rem] py-[0.35rem] font-extrabold";
