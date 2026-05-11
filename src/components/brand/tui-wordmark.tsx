@@ -1,4 +1,14 @@
-type WordmarkTone = "lime" | "mixed" | "muted" | "white";
+/**
+ * TUI-style wordmark renderer.
+ *
+ * This intentionally does not use a pixel font. Each supported character is a
+ * hand-authored bitmap glyph and the component renders those cells as SVG
+ * rectangles. That gives the site a custom wordmark language while keeping the
+ * output scalable, crisp, and accessible.
+ */
+import { GLYPHS } from "./glyphs";
+
+type WordmarkTone = "citrus" | "lime" | "mixed" | "muted" | "pink" | "white";
 
 interface TuiWordmarkProps {
 	ariaLabel?: string;
@@ -15,7 +25,12 @@ interface Glyph {
 	width: number;
 }
 
+// Every glyph uses the same vertical grid. Lowercase letters use empty rows to
+// simulate x-height/ascenders/descenders instead of simply shrinking capitals.
 const ROWS = 9;
+
+// The fallback intentionally looks like a question mark so missing glyphs are
+// obvious in `/aperture` instead of silently shipping as broken branding.
 const FALLBACK_GLYPH: Glyph = {
 	width: 4,
 	rows: [
@@ -36,229 +51,24 @@ const SPACE_GLYPH: Glyph = {
 	rows: Array.from({ length: ROWS }, () => "000"),
 };
 
-const GLYPHS: Record<string, Glyph> = {
-	A: glyph([
-		"01110",
-		"10001",
-		"10001",
-		"11111",
-		"10001",
-		"10001",
-		"10001",
-		"00000",
-		"00000",
-	]),
-	C: glyph([
-		"01111",
-		"10000",
-		"10000",
-		"10000",
-		"10000",
-		"10000",
-		"01111",
-		"00000",
-		"00000",
-	]),
-	D: glyph([
-		"11110",
-		"10001",
-		"10001",
-		"10001",
-		"10001",
-		"10001",
-		"11110",
-		"00000",
-		"00000",
-	]),
-	E: glyph([
-		"11111",
-		"10000",
-		"10000",
-		"11110",
-		"10000",
-		"10000",
-		"11111",
-		"00000",
-		"00000",
-	]),
-	H: glyph([
-		"10001",
-		"10001",
-		"10001",
-		"11111",
-		"10001",
-		"10001",
-		"10001",
-		"00000",
-		"00000",
-	]),
-	M: glyph([
-		"10001",
-		"11011",
-		"10101",
-		"10101",
-		"10001",
-		"10001",
-		"10001",
-		"00000",
-		"00000",
-	]),
-	O: glyph([
-		"01110",
-		"10001",
-		"10001",
-		"10001",
-		"10001",
-		"10001",
-		"01110",
-		"00000",
-		"00000",
-	]),
-	V: glyph([
-		"10001",
-		"10001",
-		"10001",
-		"10001",
-		"01010",
-		"01010",
-		"00100",
-		"00000",
-		"00000",
-	]),
-	Z: glyph([
-		"11111",
-		"00001",
-		"00010",
-		"00100",
-		"01000",
-		"10000",
-		"11111",
-		"00000",
-		"00000",
-	]),
-	a: glyph([
-		"0000",
-		"0000",
-		"0110",
-		"0001",
-		"0111",
-		"1001",
-		"0111",
-		"0000",
-		"0000",
-	]),
-	c: glyph([
-		"0000",
-		"0000",
-		"0111",
-		"1000",
-		"1000",
-		"1000",
-		"0111",
-		"0000",
-		"0000",
-	]),
-	d: glyph([
-		"0001",
-		"0001",
-		"0111",
-		"1001",
-		"1001",
-		"1001",
-		"0111",
-		"0000",
-		"0000",
-	]),
-	e: glyph([
-		"0000",
-		"0000",
-		"0110",
-		"1001",
-		"1111",
-		"1000",
-		"0111",
-		"0000",
-		"0000",
-	]),
-	h: glyph([
-		"1000",
-		"1000",
-		"1110",
-		"1001",
-		"1001",
-		"1001",
-		"1001",
-		"0000",
-		"0000",
-	]),
-	m: glyph([
-		"00000",
-		"00000",
-		"11010",
-		"10101",
-		"10101",
-		"10101",
-		"10101",
-		"00000",
-		"00000",
-	]),
-	n: glyph([
-		"0000",
-		"0000",
-		"1110",
-		"1001",
-		"1001",
-		"1001",
-		"1001",
-		"0000",
-		"0000",
-	]),
-	o: glyph([
-		"0000",
-		"0000",
-		"0110",
-		"1001",
-		"1001",
-		"1001",
-		"0110",
-		"0000",
-		"0000",
-	]),
-	p: glyph([
-		"0000",
-		"0000",
-		"1110",
-		"1001",
-		"1001",
-		"1110",
-		"1000",
-		"1000",
-		"0000",
-	]),
-	v: glyph([
-		"0000",
-		"0000",
-		"1001",
-		"1001",
-		"1001",
-		"0110",
-		"0110",
-		"0000",
-		"0000",
-	]),
-	z: glyph([
-		"0000",
-		"0000",
-		"1111",
-		"0001",
-		"0010",
-		"0100",
-		"1111",
-		"0000",
-		"0000",
-	]),
-};
+/** Creates a variable-width glyph while keeping row data as the single source of truth. */
+export function glyph(rows: string[]): Glyph {
+	return {
+		rows,
+		width: rows[0]?.length ?? 0,
+	};
+}
 
+/**
+ * Renders a custom TUI bitmap wordmark as crisp SVG cells.
+ *
+ * Unknown characters use a visible fallback glyph so missing coverage is caught
+ * in `/aperture` instead of silently disappearing.
+ *
+ * @param cellSize Size of each drawn square cell in SVG units.
+ * @param cellGap Gap between cells inside the same glyph.
+ * @param letterGap Gap between glyphs, separate from the cell grid.
+ */
 export function TuiWordmark({
 	ariaLabel,
 	cellGap = 2,
@@ -266,14 +76,16 @@ export function TuiWordmark({
 	className,
 	letterGap = 6,
 	text,
-	tone = "mixed",
+	tone = "white",
 }: TuiWordmarkProps) {
 	const glyphRuns = Array.from(text).map((character) => ({
 		character,
 		glyph: getGlyph(character),
 	}));
+
 	const cellStep = cellSize + cellGap;
 	const height = ROWS * cellStep - cellGap;
+
 	const width = glyphRuns.reduce((total, { glyph }, index) => {
 		const glyphWidth = glyph.width * cellStep - cellGap;
 		const spacing = index === glyphRuns.length - 1 ? 0 : letterGap;
@@ -282,7 +94,8 @@ export function TuiWordmark({
 	}, 0);
 
 	let xOffset = 0;
-	const cells = glyphRuns.flatMap(({ character, glyph }, glyphIndex) => {
+
+	const cells = glyphRuns.flatMap(({ glyph }, glyphIndex) => {
 		const glyphCells = glyph.rows.flatMap((row, y) =>
 			Array.from(row).flatMap((cell, x) => {
 				if (cell !== "1") {
@@ -291,7 +104,7 @@ export function TuiWordmark({
 
 				return [
 					{
-						fill: getCellFill({ character, glyphIndex, tone, x }),
+						fill: getCellFill({ tone }),
 						key: `${glyphIndex}-${x}-${y}`,
 						x: xOffset + x * cellStep,
 						y: y * cellStep,
@@ -327,13 +140,7 @@ export function TuiWordmark({
 	);
 }
 
-function glyph(rows: string[]): Glyph {
-	return {
-		rows,
-		width: rows[0]?.length ?? 0,
-	};
-}
-
+/** Resolves supported characters; unknown glyphs intentionally render as fallback so missing coverage is visible. */
 function getGlyph(character: string): Glyph {
 	if (character === " ") {
 		return SPACE_GLYPH;
@@ -342,19 +149,14 @@ function getGlyph(character: string): Glyph {
 	return GLYPHS[character] ?? FALLBACK_GLYPH;
 }
 
-function getCellFill({
-	character,
-	glyphIndex,
-	tone,
-	x,
-}: {
-	character: string;
-	glyphIndex: number;
-	tone: WordmarkTone;
-	x: number;
-}) {
-	if (tone === "lime") {
+/** Maps wordmark tones to design tokens */
+function getCellFill({ tone }: { tone: WordmarkTone }) {
+	if (tone === "citrus") {
 		return "var(--color-oz-lime)";
+	}
+
+	if (tone === "pink") {
+		return "var(--color-oz-pink)";
 	}
 
 	if (tone === "white") {
@@ -365,14 +167,5 @@ function getCellFill({
 		return "var(--color-oz-muted)";
 	}
 
-	if (
-		character === character.toLowerCase() &&
-		character !== character.toUpperCase()
-	) {
-		return "var(--color-oz-white)";
-	}
-
-	return (glyphIndex + x) % 3 === 0
-		? "var(--color-oz-dim)"
-		: "var(--color-oz-white)";
+	return "var(--color-oz-white)";
 }

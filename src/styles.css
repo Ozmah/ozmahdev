@@ -73,6 +73,13 @@ body,
   min-height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--color-oz-dim) transparent;
+  scrollbar-gutter: stable;
+  scrollbar-width: auto;
+}
+
 body {
   margin: 0;
   background: var(--oz-color-bg);
@@ -464,6 +471,10 @@ a {
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
     .oz-button,
     .oz-button__icon {
       transition: none;
