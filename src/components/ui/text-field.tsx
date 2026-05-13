@@ -126,22 +126,24 @@ function Field({
 				{label}
 			</label>
 			{children}
-			{description ? (
-				<p
-					className="font-oz-mono text-muted text-[0.8125rem] leading-[1.45]"
-					id={descriptionId}
-				>
-					{description}
-				</p>
-			) : null}
-			{error ? (
-				<p
-					className="font-oz-mono text-accent-strong text-[0.8125rem] leading-[1.45]"
-					id={errorId}
-				>
-					{error}
-				</p>
-			) : null}
+			<div className="min-h-11">
+				{description ? (
+					<p
+						className="m-0 font-oz-mono text-muted text-[0.8125rem] leading-[1.45]"
+						id={descriptionId}
+					>
+						{description}
+					</p>
+				) : null}
+				{error ? (
+					<p
+						className="m-0 font-oz-mono text-accent-strong text-[0.8125rem] leading-[1.45]"
+						id={errorId}
+					>
+						{error}
+					</p>
+				) : null}
+			</div>
 		</div>
 	);
 }

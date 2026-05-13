@@ -51,7 +51,7 @@ export function Switch({
 	}
 
 	return (
-		<div className="flex w-full max-w-[32rem] flex-wrap items-center justify-between gap-x-4 gap-y-2">
+		<div className="flex w-full max-w-lg flex-wrap items-center justify-between gap-x-4 gap-y-2">
 			<label
 				className="font-oz-mono text-accent text-xs font-bold leading-tight tracking-[0.12em] uppercase"
 				htmlFor={switchId}

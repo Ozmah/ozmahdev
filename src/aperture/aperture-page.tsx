@@ -3,6 +3,7 @@ import { ButtonsSection } from "./sections/buttons-section";
 import { DropdownsSection } from "./sections/dropdowns-section";
 import { InputsSection } from "./sections/inputs-section";
 import { PaletteSection } from "./sections/palette-section";
+import { SignalFrameSection } from "./sections/signal-frame-section";
 import { SwitchesSection } from "./sections/switches-section";
 import { TerminalSection } from "./sections/terminal-section";
 import { TypographySection } from "./sections/typography-section";
@@ -19,6 +20,7 @@ export function AperturePage() {
 			<ButtonsSection />
 			<DropdownsSection />
 			<SwitchesSection />
+			<SignalFrameSection />
 			<InputsSection />
 			<TerminalSection />
 		</div>
