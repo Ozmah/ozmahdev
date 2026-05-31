@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 const navigationLinkClassName =
 	"inline-flex min-h-11 items-center text-muted no-underline transition-[color,transform,text-decoration-color] duration-150 ease-out hover:text-accent hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-4 focus-visible:text-accent";
 
@@ -11,9 +13,9 @@ export function HomeNavigation() {
 					</a>
 				</li>
 				<li>
-					<a className={navigationLinkClassName} href="#aperture">
+					<Link className={navigationLinkClassName} to="/aperture">
 						The Lab
-					</a>
+					</Link>
 				</li>
 				<li>
 					<a className={navigationLinkClassName} href="#about-me">

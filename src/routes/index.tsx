@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { IdentityMark } from "#/home/identity-mark";
 import { HomeNavigation } from "#/home/navigation";
 import { Button } from "@/components/ui/button";
+import { PageContainer } from "@/shell/page-container";
 
 export const Route = createFileRoute("/")({
 	component: Home,
@@ -19,14 +20,14 @@ export const Route = createFileRoute("/")({
 
 export function Home() {
 	return (
-		<div className="mx-auto grid min-h-dvh w-full max-w-5xl grid-rows-[auto_1fr] bg-background py-10 text-foreground sm:py-14 lg:py-20">
+		<PageContainer variant="home">
 			<header className="flex items-start justify-between gap-8">
 				<IdentityMark />
 				<HomeNavigation />
 			</header>
 
 			<section className="grid content-start pt-16 sm:pt-20 lg:pt-24">
-				<div className="ml-0 max-w-136 sm:ml-8 lg:ml-14">
+				<div className="max-w-136">
 					<h1 className="font-oz-sans text-[clamp(1.35rem,1.16rem+0.8vw,1.9rem)] font-bold leading-tight tracking-[-0.04em] text-muted text-balance">
 						Hi, I'm Gabriel, Web Developer and Tinkerer
 					</h1>
@@ -51,6 +52,6 @@ export function Home() {
 					</div>
 				</div>
 			</section>
-		</div>
+		</PageContainer>
 	);
 }
