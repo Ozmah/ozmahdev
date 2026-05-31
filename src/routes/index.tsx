@@ -1,14 +1,56 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { IdentityMark } from "#/home/identity-mark";
+import { HomeNavigation } from "#/home/navigation";
+import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+	component: Home,
+	head: () => ({
+		meta: [
+			{ title: "OzmahDev | Gabriel Alegría" },
+			{
+				name: "description",
+				content:
+					"Personal site of Gabriel Alegría, web developer and tinkerer.",
+			},
+		],
+	}),
+});
 
-function Home() {
+export function Home() {
 	return (
-		<div className="p-8">
-			<h1 className="text-4xl font-bold">Welcome to TanStack Start</h1>
-			<p className="mt-4 text-lg">
-				Edit <code>src/routes/index.tsx</code> to get started.
-			</p>
+		<div className="mx-auto grid min-h-dvh w-full max-w-5xl grid-rows-[auto_1fr] bg-background py-10 text-foreground sm:py-14 lg:py-20">
+			<header className="flex items-start justify-between gap-8">
+				<IdentityMark />
+				<HomeNavigation />
+			</header>
+
+			<section className="grid content-start pt-16 sm:pt-20 lg:pt-24">
+				<div className="ml-0 max-w-136 sm:ml-8 lg:ml-14">
+					<h1 className="font-oz-sans text-[clamp(1.35rem,1.16rem+0.8vw,1.9rem)] font-bold leading-tight tracking-[-0.04em] text-muted text-balance">
+						Hi, I'm Gabriel, Web Developer and Tinkerer
+					</h1>
+
+					<div className="mt-8 max-w-124 space-y-6 text-[clamp(1rem,0.96rem+0.18vw,1.125rem)] text-muted leading-[1.45] tracking-[-0.035em]">
+						<p>
+							I'm a long time developer who loves learning about visuals and
+							fixing worker queues.
+						</p>
+						<p>
+							I'm currently a full stack engineer at Internet Brands, now
+							working with the Content Team on Sequoia. Outside work, I'm
+							building Consultapp, shaping ozmah.dev, and contributing to open
+							source whenever I can.
+						</p>
+					</div>
+
+					<div className="mt-20">
+						<Button as="a" href="#my-work">
+							What I do
+						</Button>
+					</div>
+				</div>
+			</section>
 		</div>
 	);
 }

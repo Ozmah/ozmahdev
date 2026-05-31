@@ -1,3 +1,5 @@
+bun run env:check
+bun run secrets:scan
 bunx biome check
 
 # Check for any uncommitted changes (unstaged, untracked)

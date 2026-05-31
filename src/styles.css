@@ -67,6 +67,24 @@
   );
 
   --shell-inline-padding: clamp(1rem, 4vw, 3rem);
+  --fluid-progress: clamp(0, (100vw - 23.4375rem) / 70.3125, 1);
+  --text-fluid-body: clamp(0.875rem, 0.79rem + 0.38vw, 1.125rem);
+  --text-fluid-heading: clamp(2rem, 1.25rem + 3.2vw, 4.5rem);
+  --text-fluid-display: clamp(3rem, 1.35rem + 7vw, 8.5rem);
+}
+
+@supports (font-size: calc(1rem + pow(1, 1) * 1rem)) {
+  :root {
+    --text-fluid-body: calc(
+      0.875rem + pow(var(--fluid-progress), 1.15) * 0.25rem
+    );
+    --text-fluid-heading: calc(
+      2rem + pow(var(--fluid-progress), 1.22) * 2.5rem
+    );
+    --text-fluid-display: calc(
+      3rem + pow(var(--fluid-progress), 1.35) * 5.5rem
+    );
+  }
 }
 
 @layer base {
@@ -152,6 +170,18 @@
     0 100%,
     0.7rem 50%
   );
+}
+
+@utility text-fluid-body {
+  font-size: var(--text-fluid-body);
+}
+
+@utility text-fluid-heading {
+  font-size: var(--text-fluid-heading);
+}
+
+@utility text-fluid-display {
+  font-size: var(--text-fluid-display);
 }
 
 @utility dropdown-anchor {

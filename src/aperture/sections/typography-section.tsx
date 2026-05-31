@@ -52,6 +52,38 @@ export function TypographySection() {
 					</div>
 				</AperturePanel>
 			</div>
+
+			<div className="mt-6">
+				<AperturePanel title="Fluid Typography / pow()">
+					<div className="grid gap-6">
+						<div>
+							<p className="m-0 font-oz-mono text-accent text-xs uppercase tracking-[0.16em]">
+								Viewport powered scale
+							</p>
+							<h3 className="text-fluid-display mt-3 mb-0 font-oz-display leading-[0.9] text-foreground uppercase tracking-tight text-balance">
+								Systems that refuse to disappear.
+							</h3>
+							<p className="text-fluid-body mt-5 mb-0 max-w-[68ch] text-muted leading-[1.65]">
+								This specimen uses fallback clamp tokens first, then upgrades to
+								CSS pow() where supported for a slightly slower start and
+								stronger finish across the viewport.
+							</p>
+						</div>
+
+						<div className="grid gap-3 border-border border-t pt-4 font-oz-mono text-muted text-sm">
+							<p className="m-0">
+								<span className="text-accent">body</span> · 14px → 18px
+							</p>
+							<p className="m-0">
+								<span className="text-accent">heading</span> · 32px → 72px
+							</p>
+							<p className="m-0">
+								<span className="text-accent">display</span> · 48px → 136px
+							</p>
+						</div>
+					</div>
+				</AperturePanel>
+			</div>
 		</section>
 	);
 }
