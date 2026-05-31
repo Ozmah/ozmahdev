@@ -6,7 +6,7 @@ interface AppShellProps {
 
 export function AppShell({ children }: AppShellProps) {
 	return (
-		<main className="oz-shell" id="main-content">
+		<main className="min-h-dvh" id="main-content">
 			{children}
 		</main>
 	);

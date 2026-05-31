@@ -66,7 +66,6 @@
     var(--color-oz-lime) 100%
   );
 
-  --shell-inline-padding: clamp(1rem, 4vw, 3rem);
   --fluid-progress: clamp(0, (100vw - 23.4375rem) / 70.3125, 1);
   --text-fluid-body: clamp(0.875rem, 0.79rem + 0.38vw, 1.125rem);
   --text-fluid-heading: clamp(2rem, 1.25rem + 3.2vw, 4.5rem);
@@ -130,15 +129,6 @@
     outline: 2px dashed var(--accent);
     outline-offset: 4px;
   }
-}
-
-@utility oz-shell {
-  min-height: 100dvh;
-  padding-inline: var(--shell-inline-padding);
-}
-
-@utility oz-full-bleed {
-  margin-inline: calc(var(--shell-inline-padding) * -1);
 }
 
 @utility oz-skip-link {
