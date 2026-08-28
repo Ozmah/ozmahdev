@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ApertureHeader } from "#/aperture/sections/aperture-header";
+import { BackgroundLabSection } from "#/aperture/sections/background-lab-section";
 import { ButtonsSection } from "#/aperture/sections/buttons-section";
 import { DropdownsSection } from "#/aperture/sections/dropdowns-section";
 import { InputsSection } from "#/aperture/sections/inputs-section";
@@ -30,6 +31,7 @@ export function AperturePage() {
 			<SignalFrameSection />
 			<InputsSection />
 			<TerminalSection />
+			<BackgroundLabSection />
 		</PageContainer>
 	);
 }
