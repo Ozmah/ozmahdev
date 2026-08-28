@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
 	}),
 });
 
-export function Home() {
+function Home() {
 	return (
 		<PageContainer variant="home">
 			<header className="flex items-start justify-between gap-8">

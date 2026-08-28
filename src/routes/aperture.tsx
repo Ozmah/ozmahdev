@@ -22,7 +22,7 @@ export const Route = createFileRoute("/aperture")({
 	}),
 });
 
-export function AperturePage() {
+function AperturePage() {
 	return (
 		<PageContainer variant="wider">
 			<h1 className="sr-only">OzmahDev Aperture component lab</h1>

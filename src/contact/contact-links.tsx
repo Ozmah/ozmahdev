@@ -25,26 +25,20 @@ const contactLinks = [
 
 export function ContactLinks() {
 	return (
-		<address className="not-italic">
-			<ul className="m-0 grid list-none p-0">
+		<address className="mt-8 not-italic">
+			<ul className="m-0 grid list-none gap-3 p-0">
 				{contactLinks.map((contact) => (
-					<li className="border-border-strong border-t" key={contact.label}>
+					<li key={contact.label}>
 						<a
-							className="group grid min-h-24 grid-cols-[0.35fr_1fr_auto] items-center gap-4 py-5 text-muted no-underline transition-colors duration-150 ease-out hover:text-accent focus-visible:text-accent sm:min-h-28"
+							className="group grid min-h-11 grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-4 text-muted no-underline hover:text-accent focus-visible:text-accent"
 							href={contact.href}
 							rel={contact.label === "Email" ? undefined : "me"}
 						>
-							<span className="font-oz-mono text-[0.7rem] text-dim uppercase tracking-[0.14em]">
+							<span className="font-oz-mono text-[0.7rem] text-dim uppercase tracking-[0.1em] group-hover:text-accent group-focus-visible:text-accent">
 								{contact.label}
 							</span>
-							<span className="break-all font-oz-display text-xl tracking-[-0.03em] sm:text-3xl">
+							<span className="break-all text-base tracking-[-0.025em] sm:text-lg">
 								{contact.value}
-							</span>
-							<span
-								aria-hidden="true"
-								className="font-oz-mono text-lg transition-transform duration-150 ease-out group-hover:translate-x-1"
-							>
-								↗
 							</span>
 						</a>
 					</li>

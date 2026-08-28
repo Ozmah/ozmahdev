@@ -36,7 +36,9 @@ export function WorkProject({
 					{href ? <span className="sr-only"> (opens in a new tab)</span> : null}
 				</h2>
 				{linkLabel ? (
-					<p className="m-0 font-oz-mono text-[0.7rem] text-accent tracking-[0.08em]">
+					<p
+						className={`m-0 font-oz-mono text-[0.7rem] tracking-[0.08em] ${href ? "text-accent" : "text-dim"}`}
+					>
 						{linkLabel}
 					</p>
 				) : null}

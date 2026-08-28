@@ -42,6 +42,7 @@ function WorkPage() {
 					alt="Consultapp commercial records dashboard"
 					comment="Consultapp is an internal product for managing commercial records, users, ledgers, document generation, and the day to day work around those processes. Currently serving clients in all of Mexico for TodoEnLinea."
 					height={1070}
+					linkLabel="Private product"
 					src="/images/work/consultapp.webp"
 					title="Consultapp"
 					width={1400}
@@ -68,12 +69,12 @@ function WorkPage() {
 				/>
 				<WorkProject
 					alt="tarkov.farm interactive map and document tracker"
-					comment="An interactive map and season document tracker for Escape from Tarkov."
+					comment="Inspired by Christina Martinez's talk at Laracon 2026, I set out to build the best item locator I could make for Escape From Tarkov, and so I did. Free, private and open source."
 					height={812}
 					href="https://tarkov.farm"
 					linkLabel="tarkov.farm"
 					src="/images/work/tarkov-farm.webp"
-					title="tarkov.farm"
+					title="tarkov farm"
 					width={1400}
 				/>
 			</div>
