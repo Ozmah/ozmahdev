@@ -14,7 +14,7 @@ export function TypographySpecimen({
 			</p>
 			<div className={className}>
 				<p className="text-3xl leading-tight text-oz-white md:text-5xl">
-					Building Things
+					Not a crappy title
 				</p>
 				<p className="text-oz-muted mt-4 max-w-[65ch] text-base leading-7">
 					This is a text to show how fonts used behave in differnt scenarios,
