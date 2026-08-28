@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorkRouteImport } from './routes/work'
 import { Route as ApertureRouteImport } from './routes/aperture'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApertureRoute = ApertureRouteImport.update({
   id: '/aperture',
   path: '/aperture',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aperture': typeof ApertureRoute
+  '/work': typeof WorkRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aperture': typeof ApertureRoute
+  '/work': typeof WorkRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/aperture': typeof ApertureRoute
+  '/work': typeof WorkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/aperture'
+  fullPaths: '/' | '/aperture' | '/work'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/aperture'
-  id: '__root__' | '/' | '/aperture'
+  to: '/' | '/aperture' | '/work'
+  id: '__root__' | '/' | '/aperture' | '/work'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApertureRoute: typeof ApertureRoute
+  WorkRoute: typeof WorkRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/aperture': {
       id: '/aperture'
       path: '/aperture'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApertureRoute: ApertureRoute,
+  WorkRoute: WorkRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
