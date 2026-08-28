@@ -7,7 +7,9 @@ export function TodoEnLineaEntry() {
 			description={
 				<>
 					<p className="mt-0">
-						This is the landing page for TodoEnLinea. The page focuses on what matters: explain the offer, keep the page readable and make the next step obvious for the user.
+						This is the landing page for TodoEnLinea. The page focuses on what
+						matters: explain the offer, keep the page readable and make the next
+						step obvious for the user.
 					</p>
 				</>
 			}

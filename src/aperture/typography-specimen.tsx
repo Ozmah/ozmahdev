@@ -14,10 +14,11 @@ export function TypographySpecimen({
 			</p>
 			<div className={className}>
 				<p className="text-3xl leading-tight text-oz-white md:text-5xl">
-				    Building Things
+					Building Things
 				</p>
 				<p className="text-oz-muted mt-4 max-w-[65ch] text-base leading-7">
-                    This is a text to show how fonts used behave in differnt scenarios, sizes, positions and weight.
+					This is a text to show how fonts used behave in differnt scenarios,
+					sizes, positions and weight.
 				</p>
 				<p className="text-oz-lime mt-4 text-sm uppercase tracking-widest">
 					Homelab Online · Tesseract Booting · UTC-6

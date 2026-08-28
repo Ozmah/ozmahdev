@@ -34,10 +34,15 @@ export function Home() {
 
 					<div className="mt-8 max-w-124 space-y-6 text-[clamp(1rem,0.96rem+0.18vw,1.125rem)] text-muted leading-[1.45] tracking-[-0.035em]">
 						<p>
-							I've been making software for a long time, banking, e-commerce, internal tooling and a lot more.
+							I've been making software for a long time, banking, e-commerce,
+							internal tooling and a lot more.
 						</p>
 						<p>
-							I'm currently a full stack engineer at Internet Brands, working with the Content Team on backend systems, internal tooling, and platform improvements. Outside work, I'm building Consultapp, shaping ozmah.dev, and contributing to open source any chance I get.
+							I'm currently a full stack engineer at Internet Brands, working
+							with the Content Team on backend systems, internal tooling, and
+							platform improvements. Outside work, I'm building Consultapp,
+							shaping ozmah.dev, and contributing to open source any chance I
+							get.
 						</p>
 					</div>
 

@@ -7,9 +7,9 @@ export function SiteNavigation() {
 	return (
 		<nav aria-label="Primary navigation" className="pt-7 sm:pt-10 lg:pt-12">
 			<ul className="m-0 flex list-none flex-col items-end gap-5 p-0 text-right font-oz-sans text-sm font-bold tracking-[-0.03em] text-muted sm:text-base">
-			    <li>
+				<li>
 					<Link className={navigationLinkClassName} to="/">
-					Home
+						Home
 					</Link>
 				</li>
 				<li>
@@ -19,7 +19,7 @@ export function SiteNavigation() {
 				</li>
 				<li>
 					<a className={navigationLinkClassName} href="/contact">
-					    Contact
+						Contact
 					</a>
 				</li>
 			</ul>

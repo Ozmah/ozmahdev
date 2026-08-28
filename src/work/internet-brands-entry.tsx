@@ -8,20 +8,17 @@ export function InternetBrandsEntry() {
 			description={
 				<>
 					<p className="mt-0">
-						I worked on the public landing experience for Internet Brands across multiple versions. This was the first time I worked on a site with this scale and visibility.
+						I worked on the public landing experience for Internet Brands across
+						multiple versions. This was the first time I worked on a site with
+						this scale and visibility.
 					</p>
 				</>
 			}
 			meta="2015 to date"
 			title="Internet Brands"
 		>
-
 			<div className="grid gap-10">
-				<WorkPhase
-					description=""
-					period="2015 to 2022"
-					title="IB Landing"
-				>
+				<WorkPhase description="" period="2015 to 2022" title="IB Landing">
 					<WorkImage
 						alt="Internet Brands landing page captured in 2015"
 						caption="Main landing, 2015"

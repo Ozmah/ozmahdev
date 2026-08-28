@@ -58,7 +58,9 @@ export function RangeField({
 				max={max}
 				min={min}
 				onChange={(event) => {
-					onValueChange(clampValue(event.currentTarget.valueAsNumber, min, max));
+					onValueChange(
+						clampValue(event.currentTarget.valueAsNumber, min, max),
+					);
 				}}
 				step={step}
 				type="range"

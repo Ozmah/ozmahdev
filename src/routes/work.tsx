@@ -22,7 +22,10 @@ export const Route = createFileRoute("/work")({
 
 function WorkPage() {
 	return (
-		<PageContainer className="py-10 text-foreground sm:py-14 lg:py-20" variant="wide">
+		<PageContainer
+			className="py-10 text-foreground sm:py-14 lg:py-20"
+			variant="wide"
+		>
 			<header className="flex items-start justify-between gap-8 border-border-strong border-b pb-10">
 				<div className="max-w-3xl">
 					<p className="m-0 font-oz-mono text-accent text-xs uppercase tracking-[0.16em]">
@@ -32,7 +35,9 @@ function WorkPage() {
 						What's in Prod?
 					</h1>
 					<p className="mt-5 max-w-2xl text-muted text-base leading-7">
-						Most of the work I do usually goes for private companies, but here's what I can share: public professional work, side projects, and things I built just for fun.
+						Most of the work I do usually goes for private companies, but here's
+						what I can share: public professional work, side projects, and
+						things I built just for fun.
 					</p>
 				</div>
 				<SiteNavigation />

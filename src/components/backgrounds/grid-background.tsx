@@ -33,16 +33,18 @@ export function GridBackground({
 		<div
 			aria-hidden="true"
 			className={cn("pointer-events-none absolute inset-0", className)}
-			style={{
-				...style,
-				"--grid-line-color": `color-mix(in oklch, currentColor ${gridSettings.lineOpacity}%, transparent)`,
-				backgroundImage:
-					"linear-gradient(to right, var(--grid-line-color) var(--grid-line-width), transparent var(--grid-line-width)), linear-gradient(to bottom, var(--grid-line-color) var(--grid-line-width), transparent var(--grid-line-width))",
-				backgroundSize: `${gridSettings.cellWidth}px ${gridSettings.cellHeight}px`,
-				maskImage,
-				WebkitMaskImage: maskImage,
-				"--grid-line-width": `${gridSettings.lineWidth}px`,
-			} as GridBackgroundStyle}
+			style={
+				{
+					...style,
+					"--grid-line-color": `color-mix(in oklch, currentColor ${gridSettings.lineOpacity}%, transparent)`,
+					backgroundImage:
+						"linear-gradient(to right, var(--grid-line-color) var(--grid-line-width), transparent var(--grid-line-width)), linear-gradient(to bottom, var(--grid-line-color) var(--grid-line-width), transparent var(--grid-line-width))",
+					backgroundSize: `${gridSettings.cellWidth}px ${gridSettings.cellHeight}px`,
+					maskImage,
+					WebkitMaskImage: maskImage,
+					"--grid-line-width": `${gridSettings.lineWidth}px`,
+				} as GridBackgroundStyle
+			}
 			{...props}
 		/>
 	);

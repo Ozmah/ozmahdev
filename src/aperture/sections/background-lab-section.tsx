@@ -39,7 +39,9 @@ export function BackgroundLabSection() {
 							Showing a title to see it combine with the background.
 						</h3>
 						<p className="mt-5 max-w-xl text-muted leading-7">
-							This is a preview of Julien Thibeaut's work at https://bg.ibelick.com/. Controls only change numeric CSS variables, not raw class strings.
+							This is a preview of Julien Thibeaut's work at
+							https://bg.ibelick.com/. Controls only change numeric CSS
+							variables, not raw class strings.
 						</p>
 					</div>
 				</div>
