@@ -14,6 +14,12 @@ import { PageContainer } from "#/shell/page-container";
 
 export const Route = createFileRoute("/aperture")({
 	component: AperturePage,
+	head: () => ({
+		meta: [
+			{ title: "The Lab | OzmahDev" },
+			{ name: "robots", content: "noindex, nofollow" },
+		],
+	}),
 });
 
 export function AperturePage() {

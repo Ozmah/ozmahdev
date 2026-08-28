@@ -2,21 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNavigation } from "@/components/navigation/site-navigation";
 import { siteConfig } from "@/config/site";
 import { ContactLinks } from "@/contact/contact-links";
+import { createSeo } from "@/lib/seo";
 import { PageContainer } from "@/shell/page-container";
 
 const description = `Contact ${siteConfig.owner} by email, LinkedIn, Twitter, or Discord.`;
 
 export const Route = createFileRoute("/contact")({
 	component: ContactPage,
-	head: () => ({
-		meta: [
-			{ title: `Contact | ${siteConfig.name}` },
-			{
-				name: "description",
-				content: description,
-			},
-		],
-	}),
+	head: () =>
+		createSeo({
+			description,
+			path: "/contact",
+			title: `Contact | ${siteConfig.name}`,
+		}),
 });
 
 function ContactPage() {

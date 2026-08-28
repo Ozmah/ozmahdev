@@ -2,17 +2,24 @@ import { createFileRoute } from "@tanstack/react-router";
 import { IdentityMark } from "#/home/identity-mark";
 import { HomeNavigation } from "#/home/navigation";
 import { Button } from "@/components/ui/button";
+import { createPersonStructuredData, createSeo } from "@/lib/seo";
 import { PageContainer } from "@/shell/page-container";
+
+const description =
+	"Personal site of Gabriel Alegría, web developer and tinkerer.";
 
 export const Route = createFileRoute("/")({
 	component: Home,
 	head: () => ({
-		meta: [
-			{ title: "OzmahDev | Gabriel Alegría" },
+		...createSeo({
+			description,
+			path: "/",
+			title: "OzmahDev | Gabriel Alegría",
+		}),
+		scripts: [
 			{
-				name: "description",
-				content:
-					"Personal site of Gabriel Alegría, web developer and tinkerer.",
+				type: "application/ld+json",
+				children: JSON.stringify(createPersonStructuredData()),
 			},
 		],
 	}),

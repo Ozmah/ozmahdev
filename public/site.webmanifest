@@ -1,14 +1,16 @@
 {
+  "id": "/",
   "short_name": "OzmahDev",
   "name": "OzmahDev",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#181B26",
   "background_color": "#181B26"

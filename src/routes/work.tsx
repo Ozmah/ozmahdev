@@ -1,23 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNavigation } from "@/components/navigation/site-navigation";
+import { createSeo } from "@/lib/seo";
 import { PageContainer } from "@/shell/page-container";
 import { ConsultappEntry } from "@/work/consultapp-entry";
 import { InternetBrandsEntry } from "@/work/internet-brands-entry";
 import { RedactedEntry } from "@/work/redacted-entry";
 import { TodoEnLineaEntry } from "@/work/todoenlinea-entry";
 
+const description =
+	"Selected work by Gabriel Alegría, including Consultapp, TodoEnLinea, and Internet Brands landing pages.";
+
 export const Route = createFileRoute("/work")({
 	component: WorkPage,
-	head: () => ({
-		meta: [
-			{ title: "My Work | OzmahDev" },
-			{
-				name: "description",
-				content:
-					"Selected work by Gabriel Alegría, including Consultapp, TodoEnLinea, and Internet Brands landing pages.",
-			},
-		],
-	}),
+	head: () =>
+		createSeo({
+			description,
+			path: "/work",
+			title: "My Work | OzmahDev",
+		}),
 });
 
 function WorkPage() {
