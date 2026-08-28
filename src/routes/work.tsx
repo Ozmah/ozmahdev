@@ -2,13 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNavigation } from "@/components/navigation/site-navigation";
 import { createSeo } from "@/lib/seo";
 import { PageContainer } from "@/shell/page-container";
-import { ConsultappEntry } from "@/work/consultapp-entry";
-import { InternetBrandsEntry } from "@/work/internet-brands-entry";
-import { RedactedEntry } from "@/work/redacted-entry";
-import { TodoEnLineaEntry } from "@/work/todoenlinea-entry";
+import { WorkProject } from "@/work/work-project";
 
 const description =
-	"Selected work by Gabriel Alegría, including Consultapp, TodoEnLinea, and Internet Brands landing pages.";
+	"Selected work by Gabriel Alegría, including Consultapp, TodoEnLinea, Internet Brands, and tarkov.farm.";
 
 export const Route = createFileRoute("/work")({
 	component: WorkPage,
@@ -28,10 +25,7 @@ function WorkPage() {
 		>
 			<header className="flex items-start justify-between gap-8 border-border-strong border-b pb-10">
 				<div className="max-w-3xl">
-					<p className="m-0 font-oz-mono text-accent text-xs uppercase tracking-[0.16em]">
-						OzmahDev / My Work
-					</p>
-					<h1 className="mt-4 mb-0 font-oz-display text-5xl text-foreground uppercase leading-none tracking-[-0.06em] text-balance sm:text-7xl">
+					<h1 className="m-0 font-oz-display text-5xl text-foreground uppercase leading-none tracking-[-0.04em] text-balance sm:text-7xl">
 						What's in Prod?
 					</h1>
 					<p className="mt-5 max-w-2xl text-muted text-base leading-7">
@@ -43,11 +37,45 @@ function WorkPage() {
 				<SiteNavigation />
 			</header>
 
-			<div className="grid gap-16 py-10 sm:gap-20 sm:py-14">
-				<ConsultappEntry />
-				<TodoEnLineaEntry />
-				<InternetBrandsEntry />
-				<RedactedEntry />
+			<div className="grid gap-x-8 gap-y-16 py-10 sm:py-14 lg:grid-cols-2">
+				<WorkProject
+					alt="Consultapp commercial records dashboard"
+					comment="Consultapp is an internal product for managing commercial records, users, ledgers, document generation, and the day to day work around those processes. Currently serving clients in all of Mexico for TodoEnLinea."
+					height={1070}
+					src="/images/work/consultapp.webp"
+					title="Consultapp"
+					width={1400}
+				/>
+				<WorkProject
+					alt="TodoEnLinea landing page"
+					comment="This is the landing page for TodoEnLinea. The page focuses on what matters: explain the offer, keep the page readable and make the next step obvious for the user."
+					height={792}
+					href="https://todoenlinea.app"
+					linkLabel="todoenlinea.app"
+					src="/images/work/todoenlinea.webp"
+					title="TodoEnLinea"
+					width={1400}
+				/>
+				<WorkProject
+					alt="Internet Brands landing page captured in 2023"
+					comment="I worked on the public landing experience for Internet Brands across multiple versions. This was the first time I worked on a site with this scale and visibility."
+					height={1042}
+					href="https://internetbrands.com"
+					linkLabel="internetbrands.com"
+					src="/images/work/internet-brands.webp"
+					title="Internet Brands"
+					width={1400}
+				/>
+				<WorkProject
+					alt="tarkov.farm interactive map and document tracker"
+					comment="An interactive map and season document tracker for Escape from Tarkov."
+					height={812}
+					href="https://tarkov.farm"
+					linkLabel="tarkov.farm"
+					src="/images/work/tarkov-farm.webp"
+					title="tarkov.farm"
+					width={1400}
+				/>
 			</div>
 		</PageContainer>
 	);

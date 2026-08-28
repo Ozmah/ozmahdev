@@ -8,7 +8,10 @@ interface SeoOptions {
 
 export function createSeo({ description, path, title }: SeoOptions) {
 	const url = new URL(path, siteConfig.url).toString();
-	const image = new URL("/me-anime.png", siteConfig.url).toString();
+	const image = new URL(
+		"/images/identity/me-anime.png",
+		siteConfig.url,
+	).toString();
 
 	return {
 		links: [{ rel: "canonical", href: url }],

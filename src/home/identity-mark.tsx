@@ -21,8 +21,11 @@ export function IdentityMark() {
 				<img
 					alt=""
 					className="size-full rotate-15 rounded-full border border-border-strong object-cover opacity-95"
+					decoding="async"
 					draggable={false}
-					src="/me.png"
+					height={388}
+					src="/images/identity/me.webp"
+					width={320}
 				/>
 			</motion.span>
 			<motion.span
@@ -34,8 +37,11 @@ export function IdentityMark() {
 				<img
 					alt=""
 					className="size-full -rotate-8 rounded-full border border-border-strong bg-background object-cover shadow-[0_0_0_5px_var(--background)]"
+					decoding="async"
 					draggable={false}
-					src="/me-anime.png"
+					height={320}
+					src="/images/identity/me-anime.webp"
+					width={320}
 				/>
 			</motion.span>
 		</motion.figure>

@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
 const navigationLinkClassName =
-	"inline-flex min-h-11 items-center text-muted no-underline transition-[color,transform,text-decoration-color] duration-150 ease-out hover:text-accent hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-4 focus-visible:text-accent";
+	"inline-flex min-h-11 items-center whitespace-nowrap text-muted no-underline transition-[color,transform,text-decoration-color] duration-150 ease-out hover:text-accent hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-4 focus-visible:text-accent";
 
 export function SiteNavigation() {
 	return (

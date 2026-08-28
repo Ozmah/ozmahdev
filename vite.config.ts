@@ -100,7 +100,7 @@ const config = defineConfig({
 						"cache-control": "public, max-age=86400",
 					},
 				},
-				"/work/**": {
+				"/images/**": {
 					headers: {
 						"cache-control": "public, max-age=86400",
 					},
