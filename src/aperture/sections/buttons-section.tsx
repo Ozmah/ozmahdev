@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { AperturePanel } from "../components/aperture-panel";
+import { AperturePanel } from "../aperture-panel";
 
 export function ButtonsSection() {
 	return (

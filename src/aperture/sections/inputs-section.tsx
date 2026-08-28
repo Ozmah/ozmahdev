@@ -1,5 +1,5 @@
 import { TextArea, TextInput } from "@/components/ui/text-field";
-import { AperturePanel } from "../components/aperture-panel";
+import { AperturePanel } from "../aperture-panel";
 
 export function InputsSection() {
 	return (

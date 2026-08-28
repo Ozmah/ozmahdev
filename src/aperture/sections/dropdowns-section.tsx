@@ -5,7 +5,7 @@ import {
 	MultiSelect,
 	Select,
 } from "@/components/ui/dropdown";
-import { AperturePanel } from "../components/aperture-panel";
+import { AperturePanel } from "../aperture-panel";
 
 const projectOptions: DropdownOption[] = [
 	{

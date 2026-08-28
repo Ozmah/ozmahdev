@@ -1,5 +1,5 @@
-import { AperturePanel } from "../components/aperture-panel";
-import { TypographySpecimen } from "../components/typography-specimen";
+import { AperturePanel } from "../aperture-panel";
+import { TypographySpecimen } from "../typography-specimen";
 
 export function TypographySection() {
 	return (
@@ -34,7 +34,7 @@ export function TypographySection() {
 							Current Identity
 						</p>
 						<h3 className="font-oz-display mt-3 text-4xl leading-none text-balance md:text-6xl">
-							A personal site by a developer shipping software.
+							A personal site to show what I'm working on.
 						</h3>
 						<p className="font-oz-sans text-oz-muted mt-4 max-w-[65ch] text-base leading-7">
 							OzmahDev is where I document the work: projects, experiments,
@@ -61,7 +61,7 @@ export function TypographySection() {
 								Viewport powered scale
 							</p>
 							<h3 className="text-fluid-display mt-3 mb-0 font-oz-display leading-[0.9] text-foreground uppercase tracking-tight text-balance">
-								Systems that refuse to disappear.
+							    Text Fluid Display
 							</h3>
 							<p className="text-fluid-body mt-5 mb-0 max-w-[68ch] text-muted leading-[1.65]">
 								This specimen uses fallback clamp tokens first, then upgrades to

@@ -8,7 +8,7 @@ export function ApertureHeader() {
 			</p>
 			<TuiWordmark className="mt-6 h-auto w-full max-w-3xl" text="The Lab" />
 			<p className="font-oz-mono text-oz-muted mt-4 max-w-2xl text-base">
-				Component lab. Break it here before it ships anywhere else.
+				Component lab. Playground used to create this site.
 			</p>
 		</header>
 	);

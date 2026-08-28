@@ -1,4 +1,4 @@
-import { ColorSwatch } from "../components/color-swatch";
+import { ColorSwatch } from "../color-swatch";
 
 export function PaletteSection() {
 	return (
