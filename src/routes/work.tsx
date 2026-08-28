@@ -43,12 +43,12 @@ function WorkPage() {
 				<SiteNavigation />
 			</header>
 
-			<main className="grid gap-16 py-10 sm:gap-20 sm:py-14">
+			<div className="grid gap-16 py-10 sm:gap-20 sm:py-14">
 				<ConsultappEntry />
 				<TodoEnLineaEntry />
 				<InternetBrandsEntry />
 				<RedactedEntry />
-			</main>
+			</div>
 		</PageContainer>
 	);
 }

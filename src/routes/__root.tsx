@@ -42,7 +42,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function NotFoundPage() {
 	return (
-		<main className="flex flex-1 items-center justify-center px-4 py-24">
+		<div className="flex flex-1 items-center justify-center px-4 py-24">
 			<div className="max-w-md text-center">
 				<p className="font-medium text-muted-foreground text-sm">404</p>
 				<h1 className="mt-3 font-semibold text-3xl tracking-tight">Not here</h1>
@@ -56,7 +56,7 @@ function NotFoundPage() {
 					Home
 				</Link>
 			</div>
-		</main>
+		</div>
 	);
 }
 

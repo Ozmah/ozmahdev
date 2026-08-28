@@ -5,14 +5,12 @@ export function ConsultappEntry() {
 	return (
 		<WorkEntryShell
 			description={
-				<>
-					<p className="mt-0">
-						Consultapp is an internal product for managing commercial records,
-						users, ledgers, document generation, and the day to day work around
-						those processes. Currently serving clients in all of Mexico for
-						TodoEnLinea.
-					</p>
-				</>
+				<p className="mt-0">
+					Consultapp is an internal product for managing commercial records,
+					users, ledgers, document generation, and the day to day work around
+					those processes. Currently serving clients in all of Mexico for
+					TodoEnLinea.
+				</p>
 			}
 			meta="2026"
 			title="Consultapp"

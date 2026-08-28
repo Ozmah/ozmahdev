@@ -6,13 +6,11 @@ export function InternetBrandsEntry() {
 	return (
 		<WorkEntryShell
 			description={
-				<>
-					<p className="mt-0">
-						I worked on the public landing experience for Internet Brands across
-						multiple versions. This was the first time I worked on a site with
-						this scale and visibility.
-					</p>
-				</>
+				<p className="mt-0">
+					I worked on the public landing experience for Internet Brands across
+					multiple versions. This was the first time I worked on a site with
+					this scale and visibility.
+				</p>
 			}
 			meta="2015 to date"
 			title="Internet Brands"
