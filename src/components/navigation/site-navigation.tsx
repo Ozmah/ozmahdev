@@ -18,9 +18,9 @@ export function SiteNavigation() {
 					</Link>
 				</li>
 				<li>
-					<a className={navigationLinkClassName} href="/contact">
+					<Link className={navigationLinkClassName} to="/contact">
 						Contact
-					</a>
+					</Link>
 				</li>
 			</ul>
 		</nav>
