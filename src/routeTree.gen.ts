@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApertureRouteImport } from './routes/aperture'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as HealthRouteImport } from './routes/health'
 import { Route as WorkRouteImport } from './routes/work'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HealthRoute = HealthRouteImport.update({
+  id: '/health',
+  path: '/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aperture': typeof ApertureRoute
   '/contact': typeof ContactRoute
+  '/health': typeof HealthRoute
   '/work': typeof WorkRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aperture': typeof ApertureRoute
   '/contact': typeof ContactRoute
+  '/health': typeof HealthRoute
   '/work': typeof WorkRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/aperture': typeof ApertureRoute
   '/contact': typeof ContactRoute
+  '/health': typeof HealthRoute
   '/work': typeof WorkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/aperture' | '/contact' | '/work'
+  fullPaths: '/' | '/aperture' | '/contact' | '/health' | '/work'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/aperture' | '/contact' | '/work'
-  id: '__root__' | '/' | '/aperture' | '/contact' | '/work'
+  to: '/' | '/aperture' | '/contact' | '/health' | '/work'
+  id: '__root__' | '/' | '/aperture' | '/contact' | '/health' | '/work'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApertureRoute: typeof ApertureRoute
   ContactRoute: typeof ContactRoute
+  HealthRoute: typeof HealthRoute
   WorkRoute: typeof WorkRoute
 }
 
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/health': {
+      id: '/health'
+      path: '/health'
+      fullPath: '/health'
+      preLoaderRoute: typeof HealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work': {
       id: '/work'
       path: '/work'
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApertureRoute: ApertureRoute,
   ContactRoute: ContactRoute,
+  HealthRoute: HealthRoute,
   WorkRoute: WorkRoute,
 }
 export const routeTree = rootRouteImport
