@@ -6,7 +6,7 @@ import { IdentityMark } from "@/home/identity-mark";
 import { createSeo } from "@/lib/seo";
 import { PageContainer } from "@/shell/page-container";
 
-const description = `Contact ${siteConfig.owner} by email, LinkedIn, Twitter, or Discord.`;
+const description = `Contact ${siteConfig.owner} by email, GitHub, LinkedIn, Twitter, or Discord.`;
 
 export const Route = createFileRoute("/contact")({
 	component: ContactPage,

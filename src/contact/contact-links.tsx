@@ -1,5 +1,6 @@
 import { DiscordLogoIcon } from "@phosphor-icons/react/DiscordLogo";
 import { EnvelopeSimpleIcon } from "@phosphor-icons/react/EnvelopeSimple";
+import { GithubLogoIcon } from "@phosphor-icons/react/GithubLogo";
 import { LinkedinLogoIcon } from "@phosphor-icons/react/LinkedinLogo";
 import { XLogoIcon } from "@phosphor-icons/react/XLogo";
 import { siteConfig } from "@/config/site";
@@ -10,6 +11,12 @@ const contactLinks = [
 		icon: EnvelopeSimpleIcon,
 		label: "Email",
 		value: siteConfig.email,
+	},
+	{
+		href: siteConfig.social.github,
+		icon: GithubLogoIcon,
+		label: "GitHub",
+		value: "Ozmah",
 	},
 	{
 		href: siteConfig.social.linkedin,
