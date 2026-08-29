@@ -23,6 +23,7 @@
     "prepare": "husky || true"
   },
   "dependencies": {
+    "@phosphor-icons/react": "2.1.10",
     "@tailwindcss/vite": "4.3.3",
     "@tanstack/react-devtools": "0.10.12",
     "@tanstack/react-query": "5.102.8",
@@ -33,7 +34,6 @@
     "@tanstack/react-start": "1.168.49",
     "@tanstack/router-plugin": "1.168.35",
     "@varlock/infisical-plugin": "1.2.0",
-    "lucide-react": "0.545.0",
     "motion": "12.43.0",
     "nitro": "npm:nitro-nightly@3.0.1-20260826-135133-65a4e394",
     "react": "19.2.8",

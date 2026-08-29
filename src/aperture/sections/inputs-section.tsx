@@ -31,12 +31,9 @@ export function InputsSection() {
 					<TextArea
 						description="For notes, project descriptions, and small chunks of personal copy."
 						label="Project Notes"
-						placeholder="A personal site by a developer shipping software, building a homelab, and playing with code every day."
+						placeholder="Stay awhile and listen."
 					/>
-					<TextArea
-						defaultValue="Some chapters were loud. Some were quiet. Some took longer than expected."
-						label="About Draft"
-					/>
+					<TextArea defaultValue="Would you kindly?" label="About Draft" />
 				</AperturePanel>
 			</div>
 		</section>

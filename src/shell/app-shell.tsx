@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SiteFooter } from "./site-footer";
 
 interface AppShellProps {
 	children: ReactNode;
@@ -6,8 +7,11 @@ interface AppShellProps {
 
 export function AppShell({ children }: AppShellProps) {
 	return (
-		<main className="min-h-dvh" id="main-content">
-			{children}
-		</main>
+		<div className="flex min-h-dvh flex-col">
+			<main className="flex flex-1 flex-col" id="main-content">
+				{children}
+			</main>
+			<SiteFooter />
+		</div>
 	);
 }

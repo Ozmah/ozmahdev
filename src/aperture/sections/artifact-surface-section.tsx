@@ -58,7 +58,7 @@ function ArtifactContentPanel() {
 							Idle
 						</span>
 					</div>
-					<TextInput label="Title" placeholder="Systems that endure" />
+					<TextInput label="Title" placeholder="The cake is a lie" />
 					<TextArea
 						className="min-h-28"
 						label="Notes"

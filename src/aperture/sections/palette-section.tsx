@@ -38,7 +38,7 @@ export function PaletteSection() {
 					name="Winter Dove"
 				/>
 			</div>
-			<div className="mt-4 h-28 border border-oz-line bg-[linear-gradient(135deg,#ec4899_0%,#f1d302_100%)]" />
+			<div className="mt-4 h-14 border border-oz-line bg-[linear-gradient(135deg,#ec4899_0%,#f1d302_100%)]" />
 		</section>
 	);
 }

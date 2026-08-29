@@ -79,7 +79,7 @@ export const TYPOGRAPHY_PIECES: readonly TypographyPieceDefinition[] = [
 	{
 		defaultPosition: { x: 24, y: 224 },
 		defaultText:
-			"Body text carries longer explanations. Its width and line height should keep paragraphs comfortable to read.",
+			"The right man in the wrong place can make all the difference in the world.",
 		defaultWidth: 408,
 		editorClassName:
 			"font-oz-sans text-base text-muted leading-7 tracking-[-0.025em]",
