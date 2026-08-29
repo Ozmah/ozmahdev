@@ -26,13 +26,51 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "OzmahDev",
+				name: "theme-color",
+				content: "#181B26",
+			},
+			{
+				name: "color-scheme",
+				content: "dark",
 			},
 		],
 		links: [
 			{
 				rel: "stylesheet",
 				href: appCss,
+			},
+			{
+				rel: "icon",
+				href: "/favicon.svg",
+				type: "image/svg+xml",
+			},
+			{
+				rel: "icon",
+				href: "/favicon-96x96.png",
+				sizes: "96x96",
+				type: "image/png",
+			},
+			{
+				rel: "shortcut icon",
+				href: "/favicon.ico",
+			},
+			{
+				rel: "apple-touch-icon",
+				href: "/apple-touch-icon.png",
+				sizes: "180x180",
+			},
+			{
+				rel: "manifest",
+				href: "/site.webmanifest",
+			},
+			{
+				rel: "preconnect",
+				href: "https://fonts.googleapis.com",
+			},
+			{
+				rel: "preconnect",
+				href: "https://fonts.gstatic.com",
+				crossOrigin: "anonymous",
 			},
 		],
 	}),
@@ -42,21 +80,27 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function NotFoundPage() {
 	return (
-		<main className="flex flex-1 items-center justify-center px-4 py-24">
-			<div className="max-w-md text-center">
-				<p className="font-medium text-muted-foreground text-sm">404</p>
-				<h1 className="mt-3 font-semibold text-3xl tracking-tight">Not here</h1>
-				<p className="mt-4 text-muted-foreground leading-7">
-					The page you're looking for is in another web.
-				</p>
-				<Link
-					to="/"
-					className="mt-8 inline-flex min-h-11 items-center justify-center rounded-xl bg-primary px-5 font-semibold text-primary-foreground text-sm no-underline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-				>
-					Home
-				</Link>
+		<>
+			<title>Not Found | OzmahDev</title>
+			<meta content="noindex, nofollow" name="robots" />
+			<div className="flex flex-1 items-center justify-center px-4 py-24">
+				<div className="max-w-md text-center">
+					<p className="font-medium text-muted text-sm">404</p>
+					<h1 className="mt-3 font-semibold text-3xl tracking-tight">
+						Not here
+					</h1>
+					<p className="mt-4 text-muted leading-7">
+						The page you're looking for is in another web.
+					</p>
+					<Link
+						to="/"
+						className="mt-8 inline-flex min-h-11 items-center justify-center rounded-xl bg-primary px-5 font-semibold text-primary-foreground text-sm no-underline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+					>
+						Home
+					</Link>
+				</div>
 			</div>
-		</main>
+		</>
 	);
 }
 

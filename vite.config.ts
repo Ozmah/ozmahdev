@@ -7,6 +7,33 @@ import viteReact from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 
+const isDevelopment = process.env.NODE_ENV !== "production";
+
+const securityHeaders = {
+	"content-security-policy-report-only": [
+		"default-src 'self'",
+		"base-uri 'self'",
+		"connect-src 'self'",
+		"font-src 'self' https://fonts.gstatic.com data:",
+		"form-action 'self'",
+		"frame-ancestors 'none'",
+		"img-src 'self' data:",
+		"media-src 'self'",
+		"object-src 'none'",
+		"script-src 'self'",
+		"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+		"worker-src 'self' blob:",
+	].join("; "),
+	"cross-origin-opener-policy": "same-origin",
+	"permissions-policy":
+		"camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+	"referrer-policy": "strict-origin-when-cross-origin",
+	"strict-transport-security": "max-age=31536000",
+	"x-content-type-options": "nosniff",
+	"x-frame-options": "DENY",
+	"x-permitted-cross-domain-policies": "none",
+} as const;
+
 const config = defineConfig({
 	resolve: { tsconfigPaths: true },
 	plugins: [
@@ -14,7 +41,7 @@ const config = defineConfig({
 			eventBusConfig: {
 				port: 1234,
 				debug: false,
-				enabled: true,
+				enabled: isDevelopment,
 			},
 			editor: {
 				name: "zed",
@@ -47,8 +74,12 @@ const config = defineConfig({
 		}),
 		nitro({
 			preset: "bun",
+			plugins: ["./server/plugins/robots.ts"],
 			rollupConfig: { external: [/^@sentry\//] },
 			routeRules: {
+				"/**": {
+					headers: securityHeaders,
+				},
 				"/assets/**": {
 					headers: {
 						"cache-control": "public, max-age=31536000, immutable",
@@ -59,12 +90,12 @@ const config = defineConfig({
 						"cache-control": "public, max-age=31536000",
 					},
 				},
-				"/*.svg": {
+				"/artifacts/**": {
 					headers: {
 						"cache-control": "public, max-age=86400",
 					},
 				},
-				"/*.png": {
+				"/images/**": {
 					headers: {
 						"cache-control": "public, max-age=86400",
 					},

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
-import { AperturePanel } from "../components/aperture-panel";
+import { AperturePanel } from "../aperture-panel";
 
 export function SwitchesSection() {
 	const [relayEnabled, setRelayEnabled] = useState(false);

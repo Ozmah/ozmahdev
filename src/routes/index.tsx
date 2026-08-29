@@ -2,23 +2,29 @@ import { createFileRoute } from "@tanstack/react-router";
 import { IdentityMark } from "#/home/identity-mark";
 import { HomeNavigation } from "#/home/navigation";
 import { Button } from "@/components/ui/button";
+import { createPersonStructuredData, createSeo } from "@/lib/seo";
 import { PageContainer } from "@/shell/page-container";
+
+const description = "Personal site of Gabriel Alegría, mostly a web developer.";
 
 export const Route = createFileRoute("/")({
 	component: Home,
 	head: () => ({
-		meta: [
-			{ title: "OzmahDev | Gabriel Alegría" },
+		...createSeo({
+			description,
+			path: "/",
+			title: "OzmahDev | Gabriel Alegría",
+		}),
+		scripts: [
 			{
-				name: "description",
-				content:
-					"Personal site of Gabriel Alegría, web developer and tinkerer.",
+				type: "application/ld+json",
+				children: JSON.stringify(createPersonStructuredData()),
 			},
 		],
 	}),
 });
 
-export function Home() {
+function Home() {
 	return (
 		<PageContainer variant="home">
 			<header className="flex items-start justify-between gap-8">
@@ -28,25 +34,26 @@ export function Home() {
 
 			<section className="grid content-start pt-16 sm:pt-20 lg:pt-24">
 				<div className="max-w-136">
-					<h1 className="font-oz-sans text-[clamp(1.35rem,1.16rem+0.8vw,1.9rem)] font-bold leading-tight tracking-[-0.04em] text-muted text-balance">
-						Hi, I'm Gabriel, Web Developer and Tinkerer
+					<h1 className="font-oz-display text-[clamp(1.35rem,1.16rem+0.8vw,1.9rem)] font-bold leading-tight tracking-[-0.04em] text-muted text-balance">
+						Hi, I'm Gabriel. Mostly a web developer.
 					</h1>
 
 					<div className="mt-8 max-w-124 space-y-6 text-[clamp(1rem,0.96rem+0.18vw,1.125rem)] text-muted leading-[1.45] tracking-[-0.035em]">
 						<p>
-							I'm a long time developer who loves learning about visuals and
-							fixing worker queues.
+							I've been making software for a long time, e-commerce, banking,
+							internal tooling and a lot more.
 						</p>
 						<p>
-							I'm currently a full stack engineer at Internet Brands, now
-							working with the Content Team on Sequoia. Outside work, I'm
-							building Consultapp, shaping ozmah.dev, and contributing to open
-							source whenever I can.
+							I'm currently a full stack engineer at Internet Brands, working
+							with the Content Team on backend systems, internal tooling, and
+							platform improvements. Outside work, I'm building Consultapp,
+							conjuring new ideas, and contributing to open source any chance I
+							get.
 						</p>
 					</div>
 
 					<div className="mt-20">
-						<Button as="a" href="#my-work">
+						<Button as="a" href="/work">
 							What I do
 						</Button>
 					</div>

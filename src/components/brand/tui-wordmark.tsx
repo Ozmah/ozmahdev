@@ -15,6 +15,7 @@ interface TuiWordmarkProps {
 	cellGap?: number;
 	cellSize?: number;
 	className?: string;
+	decorative?: boolean;
 	letterGap?: number;
 	text: string;
 	tone?: WordmarkTone;
@@ -43,10 +44,9 @@ const SPACE_GLYPH: Glyph = {
 };
 
 /**
- * Renders a custom TUI bitmap wordmark as crisp SVG cells.
+ * Renders a custom TUI bitmap wordmark as SVG cells.
  *
- * Unknown characters use a visible fallback glyph so missing coverage is caught
- * in `/aperture` instead of silently disappearing.
+ * Unknown characters use a visible fallback glyph
  *
  * @param cellSize Size of each drawn square cell in SVG units.
  * @param cellGap Gap between cells inside the same glyph.
@@ -57,6 +57,7 @@ export function TuiWordmark({
 	cellGap = 2,
 	cellSize = 12,
 	className,
+	decorative = false,
 	letterGap = 6,
 	text,
 	tone = "white",
@@ -103,11 +104,14 @@ export function TuiWordmark({
 
 	return (
 		<svg
-			aria-label={ariaLabel ?? text}
+			aria-hidden={decorative || undefined}
+			aria-label={decorative ? undefined : (ariaLabel ?? text)}
 			className={className}
-			role="img"
+			height={height}
+			role={decorative ? undefined : "img"}
 			shapeRendering="crispEdges"
 			viewBox={`0 0 ${width} ${height}`}
+			width={width}
 		>
 			{cells.map((cell) => (
 				<rect

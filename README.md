@@ -2,17 +2,13 @@
 
 This is my personal site.
 
-A technical personal space: projects, notes, homelab work, games, experiments, and the visual system behind `ozmah.dev`.
+Introduction, ways to contact me, some of my work and some experiments.
 
 ## Stack
 
 - TanStack Start
-- TanStack Router
-- TanStack Query
-- React 19
-- TypeScript
 - Tailwind CSS v4
-- Nitro
+- Vite
 - Bun
 - Biome
 
@@ -64,14 +60,9 @@ bun run glados       # full validation gate
 
 `/aperture` is the component lab.
 
-It exists to test the design system before real pages depend on it: typography, palette, buttons, inputs, terminal frames, wordmarks, and layout behavior.
-
-If a reusable component works on a page but fails in `/aperture`, the component is wrong.
+This exists to test components before using them, to try ideas or even build the site (og image generator *cough*).
 
 ## Notes
 
-- Components are custom on purpose. Plans on adding shadcn and customize it.
-- Global shell owns horizontal page padding.
-- Page compositions own vertical rhythm.
-- The visual system is intentionally personal, technical, and experimental.
+- Components are custom on purpose. The idea is to experiment.
 - Code is MIT licensed. Third-party fonts, palettes, names, logos, and assets remain under their respective licenses.
