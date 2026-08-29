@@ -1,5 +1,6 @@
 import { ApertureIcon } from "@phosphor-icons/react/Aperture";
 import { ArrowLeftIcon } from "@phosphor-icons/react/ArrowLeft";
+import { PawPrintIcon } from "@phosphor-icons/react/PawPrint";
 import { Link, useLocation } from "@tanstack/react-router";
 
 export function SiteFooter() {
@@ -12,7 +13,14 @@ export function SiteFooter() {
 			<div className="mx-auto flex min-h-20 w-full max-w-5xl items-center justify-between">
 				<p className="m-0 font-oz-mono text-dim text-xs tracking-[0.08em]">
 					© Ozmah 2026
+					<PawPrintIcon
+						aria-hidden="true"
+						className="ml-2 text-dim inline"
+						size={15}
+						weight="regular"
+					/>
 				</p>
+
 				<Link
 					aria-label={
 						isAperture

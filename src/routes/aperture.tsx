@@ -5,9 +5,9 @@ import { BackgroundLabSection } from "#/aperture/sections/background-lab-section
 import { ButtonsSection } from "#/aperture/sections/buttons-section";
 import { DropdownsSection } from "#/aperture/sections/dropdowns-section";
 import { InputsSection } from "#/aperture/sections/inputs-section";
+import { OgImageSection } from "#/aperture/sections/og-image-section";
 import { PaletteSection } from "#/aperture/sections/palette-section";
 import { SwitchesSection } from "#/aperture/sections/switches-section";
-import { TerminalSection } from "#/aperture/sections/terminal-section";
 import { TypographySection } from "#/aperture/sections/typography-section";
 import { WordmarkSection } from "#/aperture/sections/wordmark-section";
 import { PageContainer } from "#/shell/page-container";
@@ -36,8 +36,8 @@ function AperturePage() {
 			<SwitchesSection />
 			<ArtifactSurfaceSection />
 			<InputsSection />
-			<TerminalSection />
 			<BackgroundLabSection />
+			<OgImageSection />
 		</PageContainer>
 	);
 }

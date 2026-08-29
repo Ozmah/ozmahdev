@@ -41,7 +41,7 @@ function Home() {
 
 					<div className="mt-8 max-w-124 space-y-6 text-[clamp(1rem,0.96rem+0.18vw,1.125rem)] text-muted leading-[1.45] tracking-[-0.035em]">
 						<p>
-							I've been making software for a long time, banking, e-commerce,
+							I've been making software for a long time, e-commerce, banking,
 							internal tooling and a lot more.
 						</p>
 						<p>
