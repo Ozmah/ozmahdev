@@ -7,6 +7,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { AnalyticsRuntime } from "@/integrations/posthog/analytics-runtime";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import { AppShell } from "../shell/app-shell";
 import appCss from "../styles.css?url";
@@ -111,6 +112,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
+				<AnalyticsRuntime />
 				<a className="oz-skip-link" href="#main-content">
 					Skip to content
 				</a>
