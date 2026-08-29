@@ -36,7 +36,7 @@ function Home() {
 			<section className="grid content-start pt-16 sm:pt-20 lg:pt-24">
 				<div className="max-w-136">
 					<h1 className="font-oz-display text-[clamp(1.35rem,1.16rem+0.8vw,1.9rem)] font-bold leading-tight tracking-[-0.04em] text-muted text-balance">
-						Hi, I'm Gabriel, Web Developer and Tinkerer
+						Hi, I'm Gabriel. Mostly a web developer.
 					</h1>
 
 					<div className="mt-8 max-w-124 space-y-6 text-[clamp(1rem,0.96rem+0.18vw,1.125rem)] text-muted leading-[1.45] tracking-[-0.035em]">
@@ -48,7 +48,7 @@ function Home() {
 							I'm currently a full stack engineer at Internet Brands, working
 							with the Content Team on backend systems, internal tooling, and
 							platform improvements. Outside work, I'm building Consultapp,
-							shaping ozmah.dev, and contributing to open source any chance I
+							conjuring new ideas, and contributing to open source any chance I
 							get.
 						</p>
 					</div>

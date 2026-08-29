@@ -24,5 +24,6 @@ const pageContainerVariants: Record<PageContainerVariant, string> = {
 	full: "min-h-dvh w-full",
 	home: "mx-auto grid min-h-dvh w-full max-w-5xl grid-rows-[auto_1fr] bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14 lg:px-0 lg:py-20",
 	wide: "mx-auto min-h-dvh w-full max-w-5xl px-5 sm:px-8 lg:px-0",
-	wider: "mx-auto min-h-dvh w-full max-w-7/10 px-5 sm:px-8 lg:px-12",
+	wider:
+		"mx-auto min-h-dvh w-full max-w-full px-5 sm:px-8 lg:px-12 xl:max-w-7/10",
 };

@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ApertureHeader } from "#/aperture/sections/aperture-header";
+import { ArtifactSurfaceSection } from "#/aperture/sections/artifact-surface-section";
 import { BackgroundLabSection } from "#/aperture/sections/background-lab-section";
 import { ButtonsSection } from "#/aperture/sections/buttons-section";
 import { DropdownsSection } from "#/aperture/sections/dropdowns-section";
 import { InputsSection } from "#/aperture/sections/inputs-section";
 import { PaletteSection } from "#/aperture/sections/palette-section";
-import { SignalFrameSection } from "#/aperture/sections/signal-frame-section";
 import { SwitchesSection } from "#/aperture/sections/switches-section";
 import { TerminalSection } from "#/aperture/sections/terminal-section";
 import { TypographySection } from "#/aperture/sections/typography-section";
@@ -34,7 +34,7 @@ function AperturePage() {
 			<ButtonsSection />
 			<DropdownsSection />
 			<SwitchesSection />
-			<SignalFrameSection />
+			<ArtifactSurfaceSection />
 			<InputsSection />
 			<TerminalSection />
 			<BackgroundLabSection />

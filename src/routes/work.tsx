@@ -26,16 +26,15 @@ function WorkPage() {
 			<header className="flex items-start justify-between gap-8 border-border-strong border-b pb-10">
 				<div className="max-w-3xl">
 					<h1 className="m-0 font-oz-display text-5xl text-foreground uppercase leading-none tracking-[-0.04em] text-balance sm:text-7xl">
-						What's in Prod?
+						My work so far
 					</h1>
 					<span
 						aria-hidden="true"
 						className="mt-5 block h-0.5 w-12 bg-accent"
 					/>
 					<p className="mt-5 max-w-2xl text-muted text-base leading-7">
-						Most of the work I do usually goes for private companies, but here's
-						what I can share: public professional work, side projects, and
-						things I built just for fun.
+						Some of these applications were built for companies. Others start as
+						side projects, weird ideas or just stuff I want for myself.
 					</p>
 				</div>
 				<SiteNavigation />

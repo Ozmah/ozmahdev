@@ -125,6 +125,14 @@
     touch-action: manipulation;
   }
 
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
   :focus-visible {
     outline: 2px dashed var(--accent);
     outline-offset: 4px;
