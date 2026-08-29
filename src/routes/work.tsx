@@ -28,6 +28,10 @@ function WorkPage() {
 					<h1 className="m-0 font-oz-display text-5xl text-foreground uppercase leading-none tracking-[-0.04em] text-balance sm:text-7xl">
 						What's in Prod?
 					</h1>
+					<span
+						aria-hidden="true"
+						className="mt-5 block h-0.5 w-12 bg-accent"
+					/>
 					<p className="mt-5 max-w-2xl text-muted text-base leading-7">
 						Most of the work I do usually goes for private companies, but here's
 						what I can share: public professional work, side projects, and
@@ -37,7 +41,7 @@ function WorkPage() {
 				<SiteNavigation />
 			</header>
 
-			<div className="grid gap-x-8 gap-y-16 py-10 sm:py-14 lg:grid-cols-2">
+			<div className="grid gap-x-8 gap-y-16 py-10 [&>article:first-child]:border-t-0 [&>article:first-child]:pt-0 sm:py-14 lg:grid-cols-2 lg:[&>article:nth-child(2)]:border-t-0 lg:[&>article:nth-child(2)]:pt-0">
 				<WorkProject
 					alt="Consultapp commercial records dashboard"
 					comment="Consultapp is an internal product for managing commercial records, users, ledgers, document generation, and the day to day work around those processes. Currently serving clients in all of Mexico for TodoEnLinea."
