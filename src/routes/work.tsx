@@ -46,6 +46,7 @@ function WorkPage() {
 					comment="Consultapp is an internal product for managing commercial records, users, ledgers, document generation, and the day to day work around those processes. Currently serving clients in all of Mexico for TodoEnLinea."
 					height={1070}
 					linkLabel="Private product"
+					projectSlug="consultapp"
 					src="/images/work/consultapp.webp"
 					title="Consultapp"
 					width={1400}
@@ -56,6 +57,8 @@ function WorkPage() {
 					height={792}
 					href="https://todoenlinea.app"
 					linkLabel="todoenlinea.app"
+					destinationType="live_site"
+					projectSlug="todoenlinea"
 					src="/images/work/todoenlinea.webp"
 					title="TodoEnLinea"
 					width={1400}
@@ -66,6 +69,8 @@ function WorkPage() {
 					height={1042}
 					href="https://internetbrands.com"
 					linkLabel="internetbrands.com"
+					destinationType="live_site"
+					projectSlug="internet_brands"
 					src="/images/work/internet-brands.webp"
 					title="Internet Brands"
 					width={1400}
@@ -76,6 +81,8 @@ function WorkPage() {
 					height={812}
 					href="https://tarkov.farm"
 					linkLabel="tarkov.farm"
+					destinationType="live_site"
+					projectSlug="tarkov_farm"
 					src="/images/work/tarkov-farm.webp"
 					title="tarkov farm"
 					width={1400}

@@ -180,7 +180,7 @@ export function OgImageGenerator() {
 					/>
 				</div>
 
-				<div className="mt-2 grid gap-3 sm:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
+				<div className="mt-2 grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
 					<Button
 						className="min-h-12 min-w-0 px-4 py-3"
 						disabled={isRendering}

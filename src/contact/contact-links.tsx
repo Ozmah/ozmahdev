@@ -4,33 +4,39 @@ import { GithubLogoIcon } from "@phosphor-icons/react/GithubLogo";
 import { LinkedinLogoIcon } from "@phosphor-icons/react/LinkedinLogo";
 import { XLogoIcon } from "@phosphor-icons/react/XLogo";
 import { siteConfig } from "@/config/site";
+import { captureAnalyticsEvent } from "@/integrations/posthog/analytics";
 
 const contactLinks = [
 	{
+		channel: "email",
 		href: `mailto:${siteConfig.email}`,
 		icon: EnvelopeSimpleIcon,
 		label: "Email",
 		value: siteConfig.email,
 	},
 	{
+		channel: "github",
 		href: siteConfig.social.github,
 		icon: GithubLogoIcon,
 		label: "GitHub",
 		value: "Ozmah",
 	},
 	{
+		channel: "linkedin",
 		href: siteConfig.social.linkedin,
 		icon: LinkedinLogoIcon,
 		label: "LinkedIn",
 		value: "gabriel-alegria-mx",
 	},
 	{
+		channel: "twitter",
 		href: siteConfig.social.twitter,
 		icon: XLogoIcon,
 		label: "Twitter",
 		value: "@OzmahG",
 	},
 	{
+		channel: "discord",
 		href: siteConfig.social.discord,
 		icon: DiscordLogoIcon,
 		label: "Discord",
@@ -51,6 +57,12 @@ export function ContactLinks() {
 								aria-label={`${contact.label}: ${contact.value}`}
 								className="group grid min-h-11 grid-cols-[1.5rem_minmax(0,1fr)] items-center gap-4 text-muted no-underline hover:text-accent focus-visible:text-accent"
 								href={contact.href}
+								onClick={() => {
+									captureAnalyticsEvent("contact_started", {
+										channel: contact.channel,
+										placement: "contact_page",
+									});
+								}}
 								rel={contact.label === "Email" ? undefined : "me"}
 							>
 								<Icon

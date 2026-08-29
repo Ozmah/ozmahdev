@@ -13,7 +13,7 @@ const securityHeaders = {
 	"content-security-policy-report-only": [
 		"default-src 'self'",
 		"base-uri 'self'",
-		"connect-src 'self'",
+		"connect-src 'self' https://us.i.posthog.com",
 		"font-src 'self' https://fonts.gstatic.com data:",
 		"form-action 'self'",
 		"frame-ancestors 'none'",

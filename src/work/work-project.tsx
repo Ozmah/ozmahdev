@@ -1,9 +1,16 @@
+import {
+	captureAnalyticsEvent,
+	type OutboundDestination,
+} from "@/integrations/posthog/analytics";
+
 interface WorkProjectProps {
 	alt: string;
 	comment: string;
 	height: number;
 	href?: string;
 	linkLabel?: string;
+	destinationType?: OutboundDestination;
+	projectSlug: string;
 	src: string;
 	title: string;
 	width: number;
@@ -15,6 +22,8 @@ export function WorkProject({
 	height,
 	href,
 	linkLabel,
+	destinationType,
+	projectSlug,
 	src,
 	title,
 	width,
@@ -52,6 +61,17 @@ export function WorkProject({
 				<a
 					className="group block text-inherit no-underline focus-visible:outline-offset-4"
 					href={href}
+					onClick={() => {
+						if (!destinationType) {
+							return;
+						}
+
+						captureAnalyticsEvent("outbound_link_clicked", {
+							destination_type: destinationType,
+							placement: "work_grid",
+							project_slug: projectSlug,
+						});
+					}}
 					rel="noopener noreferrer"
 					target="_blank"
 				>

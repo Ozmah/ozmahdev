@@ -11,6 +11,11 @@ RUN bun install --frozen-lockfile
 FROM dependencies AS builder
 WORKDIR /app
 
+ARG VITE_POSTHOG_HOST=https://us.i.posthog.com
+ARG VITE_POSTHOG_KEY=""
+ENV VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST
+ENV VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY
+
 COPY --link . .
 
 ENV NODE_ENV=production

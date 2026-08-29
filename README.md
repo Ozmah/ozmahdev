@@ -66,3 +66,11 @@ This exists to test components before using them, to try ideas or even build the
 
 - Components are custom on purpose. The idea is to experiment.
 - Code is MIT licensed. Third-party fonts, palettes, names, logos, and assets remain under their respective licenses.
+
+## Avatar by Lemuzaurio
+
+- You can contact him here: https://www.facebook.com/Lemuzaurio/
+
+## License
+
+MIT
