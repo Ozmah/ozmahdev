@@ -85,11 +85,11 @@ function NotFoundPage() {
 			<meta content="noindex, nofollow" name="robots" />
 			<div className="flex flex-1 items-center justify-center px-4 py-24">
 				<div className="max-w-md text-center">
-					<p className="font-medium text-muted-foreground text-sm">404</p>
+					<p className="font-medium text-muted text-sm">404</p>
 					<h1 className="mt-3 font-semibold text-3xl tracking-tight">
 						Not here
 					</h1>
-					<p className="mt-4 text-muted-foreground leading-7">
+					<p className="mt-4 text-muted leading-7">
 						The page you're looking for is in another web.
 					</p>
 					<Link

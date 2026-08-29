@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 import { createPersonStructuredData, createSeo } from "@/lib/seo";
 import { PageContainer } from "@/shell/page-container";
 
-const description =
-	"Personal site of Gabriel Alegría, web developer and tinkerer.";
+const description = "Personal site of Gabriel Alegría, mostly a web developer.";
 
 export const Route = createFileRoute("/")({
 	component: Home,

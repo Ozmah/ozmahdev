@@ -8,7 +8,6 @@ import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
-const isProductionDeployment = process.env.APP_ENV === "production";
 
 const securityHeaders = {
 	"content-security-policy-report-only": [
@@ -34,11 +33,6 @@ const securityHeaders = {
 	"x-frame-options": "DENY",
 	"x-permitted-cross-domain-policies": "none",
 } as const;
-
-const applicationHeaders = {
-	...securityHeaders,
-	...(isProductionDeployment ? {} : { "x-robots-tag": "noindex, nofollow" }),
-};
 
 const config = defineConfig({
 	resolve: { tsconfigPaths: true },
@@ -80,10 +74,11 @@ const config = defineConfig({
 		}),
 		nitro({
 			preset: "bun",
+			plugins: ["./server/plugins/robots.ts"],
 			rollupConfig: { external: [/^@sentry\//] },
 			routeRules: {
 				"/**": {
-					headers: applicationHeaders,
+					headers: securityHeaders,
 				},
 				"/assets/**": {
 					headers: {
