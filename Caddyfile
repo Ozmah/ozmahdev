@@ -1,0 +1,56 @@
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+:{$PORT:3000} {
+	root * /srv
+	encode zstd gzip
+
+	header {
+		-Server
+		Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; connect-src 'self' https://us.i.posthog.com; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; media-src 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:"
+		Cross-Origin-Opener-Policy "same-origin"
+		Permissions-Policy "camera=(), geolocation=(), microphone=(), payment=(), usb=()"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		X-Permitted-Cross-Domain-Policies "none"
+	}
+
+	@immutable path /_astro/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+	@fonts path /fonts/*
+	header @fonts Cache-Control "public, max-age=31536000"
+
+	@publicAssets path /artifacts/* /images/* /apple-touch-icon.png /favicon.ico /favicon.svg /favicon-96x96.png /ozmah-dev-og.png /site.webmanifest /web-app-manifest-192x192.png /web-app-manifest-512x512.png
+	header @publicAssets Cache-Control "public, max-age=86400"
+
+	@documents path / /404.html /aperture /contact /privacy /work /robots.txt /sitemap.xml
+	header @documents Cache-Control "public, max-age=0, must-revalidate"
+
+	import /etc/caddy/environments/{$APP_ENV:preview}.caddy
+
+	handle /health {
+		header Cache-Control "no-store"
+		header Content-Type "application/json; charset=utf-8"
+		header X-Robots-Tag "noindex, nofollow"
+		respond `{"status":"healthy"}` 200
+	}
+
+	@trailingSlash path_regexp trailingSlash ^(.+)/$
+	redir @trailingSlash {re.trailingSlash.1} 308
+
+	handle {
+		try_files {path}.html {path}/index.html {path}
+		file_server
+	}
+
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Switch } from "@/components/ui/switch";
+import { Switch } from "../../components/react/ui/switch";
 import { AperturePanel } from "../aperture-panel";
 
 export function SwitchesSection() {

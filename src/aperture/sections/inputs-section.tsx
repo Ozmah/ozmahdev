@@ -1,4 +1,4 @@
-import { TextArea, TextInput } from "@/components/ui/text-field";
+import { TextArea, TextInput } from "../../components/react/ui/text-field";
 import { AperturePanel } from "../aperture-panel";
 
 export function InputsSection() {

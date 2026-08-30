@@ -2,19 +2,19 @@
 	"files": [
 		{
 			"path": "package.json",
-			"description": "Project scripts and dependency surface. `glados` is the primary quality gate: Biome check, TypeScript check, and production build."
+			"description": "Project scripts and dependency surface. `glados` is the primary quality gate: environment validation, secret scanning, Biome, Astro and TypeScript checks, tests, production build, and static-output verification."
 		},
 		{
-			"path": "src/styles.css",
-			"description": "Global OzmahDev token foundation: Tailwind v4 theme tokens, colors, typography aliases, spacing, focus, motion, button component classes, and global base styles."
+			"path": "src/styles/global.css",
+			"description": "Global OzmahDev token foundation: local fonts, Tailwind v4 theme tokens, colors, typography aliases, spacing, focus, motion, component classes, and global base styles."
 		},
 		{
-			"path": "src/components/ui/button.tsx",
-			"description": "Custom button primitive. Supports primary, secondary, and tertiary variants with accessible focus state and disabled handling. Hero CTA audio should be opt-in, not global button behavior."
+			"path": "src/layouts/BaseLayout.astro",
+			"description": "Shared document shell: SEO metadata, JSON-LD, Astro ClientRouter, analytics entrypoint, navigation, and global styles."
 		},
 		{
-			"path": "src/routes/aperture.tsx",
-			"description": "Internal component lab / visual torture room. Used before building real pages to expose spacing, sizing, focus, responsive, and context-dependency problems."
+			"path": "src/pages/aperture.astro",
+			"description": "Internal component lab that hosts the only React island. Used to expose spacing, sizing, focus, responsive, and interaction problems before components reach public pages."
 		}
 	]
 }

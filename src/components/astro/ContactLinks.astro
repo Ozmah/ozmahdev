@@ -1,0 +1,33 @@
+---
+import { siteConfig } from "../../config/site";
+import Icon from "./Icon.astro";
+
+const contactLinks = [
+	{ channel: "email", href: `mailto:${siteConfig.email}`, icon: "envelope", label: "Email", value: siteConfig.email },
+	{ channel: "github", href: siteConfig.social.github, icon: "github", label: "GitHub", value: "Ozmah" },
+	{ channel: "linkedin", href: siteConfig.social.linkedin, icon: "linkedin", label: "LinkedIn", value: "gabriel-alegria-mx" },
+	{ channel: "twitter", href: siteConfig.social.twitter, icon: "x", label: "Twitter", value: "@OzmahG" },
+	{ channel: "discord", href: siteConfig.social.discord, icon: "discord", label: "Discord", value: "ozmah" },
+] as const;
+---
+
+<address class="mt-8 not-italic">
+	<ul class="m-0 grid list-none gap-3 p-0">
+		{contactLinks.map((contact) => (
+			<li>
+				<a
+					aria-label={`${contact.label}: ${contact.value}`}
+					class="group grid min-h-11 grid-cols-[1.5rem_minmax(0,1fr)] items-center gap-4 text-muted no-underline hover:text-accent focus-visible:text-accent"
+					data-analytics-channel={contact.channel}
+					data-analytics-event="contact_started"
+					data-analytics-placement="contact_page"
+					href={contact.href}
+					rel={contact.label === "Email" ? undefined : "me"}
+				>
+					<Icon class="text-dim transition-colors duration-150 ease-out group-hover:text-accent group-focus-visible:text-accent" name={contact.icon} />
+					<span class="break-all text-base tracking-[-0.025em] sm:text-lg">{contact.value}</span>
+				</a>
+			</li>
+		))}
+	</ul>
+</address>

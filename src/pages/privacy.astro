@@ -1,0 +1,25 @@
+---
+import Icon from "../components/astro/Icon.astro";
+import PageContainer from "../components/astro/PageContainer.astro";
+import { siteConfig } from "../config/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description = `How ${siteConfig.name} collects minimal, privacy-preserving website analytics.`;
+---
+
+<BaseLayout description={description} path="/privacy" title={`Privacy | ${siteConfig.name}`}>
+	<PageContainer class="py-10 text-foreground sm:py-14 lg:py-20">
+		<header>
+			<a aria-label="Back to OzmahDev home" class="group -ml-3 inline-flex size-11 items-center justify-center text-dim no-underline transition-colors duration-150 ease-out hover:text-accent focus-visible:text-accent" href="/">
+				<Icon class="transition-transform duration-150 ease-out group-hover:-translate-x-1 group-focus-visible:-translate-x-1 motion-reduce:transform-none motion-reduce:transition-none" name="arrowLeft" />
+			</a>
+		</header>
+		<article class="mt-14 max-w-2xl sm:mt-20">
+			<h1 class="m-0 font-oz-display text-2xl text-foreground tracking-[-0.035em] sm:text-3xl">Privacy, the short version</h1>
+			<div class="mt-7 max-w-xl space-y-5 text-muted leading-7">
+				<p>Site has analytics, using stuff like what people click, where visits come from. No cookies, session recordings, names, emails, or form data.</p>
+				<p>If you have any questions, send me an email to <a class="text-accent" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p>
+			</div>
+		</article>
+	</PageContainer>
+</BaseLayout>

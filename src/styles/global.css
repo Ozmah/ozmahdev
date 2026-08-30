@@ -1,0 +1,219 @@
+@import "tailwindcss" source(none);
+@source "../";
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("@fontsource/barlow-condensed/files/barlow-condensed-latin-700-normal.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Chakra Petch";
+  src: url("@fontsource/chakra-petch/files/chakra-petch-latin-600-normal.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Chakra Petch";
+  src: url("@fontsource/chakra-petch/files/chakra-petch-latin-700-normal.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-400-normal.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-500-normal.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-600-normal.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-700-normal.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Monaspace Krypton";
+  src: url("/fonts/monaspace/monaspace-krypton-var.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 200 800;
+}
+
+@theme {
+  --color-oz-black: oklch(22.428% 0.02197 272.68);
+  --color-oz-ink: oklch(22.428% 0.02197 272.68);
+  --color-oz-surface: oklch(27.244% 0.02427 277.84);
+  --color-oz-surface-raised: oklch(38.333% 0.01855 285.49);
+  --color-oz-line: oklch(38.333% 0.01855 285.49);
+  --color-oz-line-strong: oklch(50.002% 0.01733 285.76);
+  --color-oz-white: oklch(98.212% 0 89.88);
+  --color-oz-muted: oklch(93.44% 0.00548 274.96);
+  --color-oz-dim: oklch(64.249% 0.01484 281.41);
+  --color-oz-lime: oklch(86.561% 0.17906 98.79);
+  --color-oz-pink: oklch(65.592% 0.21177 354.31);
+  --font-oz-display: "Chakra Petch", ui-sans-serif, system-ui, sans-serif;
+  --font-oz-action: "Barlow Condensed", "Arial Narrow Bold", sans-serif;
+  --font-oz-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-oz-mono: "Monaspace Krypton", "JetBrains Mono", "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-muted: var(--muted);
+  --color-dim: var(--dim);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+}
+
+:root {
+  color-scheme: dark;
+  --background: var(--color-oz-black);
+  --foreground: var(--color-oz-white);
+  --surface: var(--color-oz-surface);
+  --surface-raised: var(--color-oz-surface-raised);
+  --border: var(--color-oz-line);
+  --border-strong: var(--color-oz-line-strong);
+  --muted: var(--color-oz-muted);
+  --dim: var(--color-oz-dim);
+  --accent: var(--color-oz-lime);
+  --accent-strong: var(--color-oz-pink);
+  --primary: var(--accent);
+  --primary-foreground: var(--background);
+  --gradient-signal: linear-gradient(135deg, var(--color-oz-pink) 0%, var(--color-oz-lime) 100%);
+  --fluid-progress: clamp(0, (100vw - 23.4375rem) / 70.3125, 1);
+  --text-fluid-body: clamp(0.875rem, 0.79rem + 0.38vw, 1.125rem);
+  --text-fluid-heading: clamp(2rem, 1.25rem + 3.2vw, 4.5rem);
+  --text-fluid-display: clamp(3rem, 1.35rem + 7vw, 8.5rem);
+}
+
+@supports (font-size: calc(1rem + pow(1, 1) * 1rem)) {
+  :root {
+    --text-fluid-body: calc(0.875rem + pow(var(--fluid-progress), 1.15) * 0.25rem);
+    --text-fluid-heading: calc(2rem + pow(var(--fluid-progress), 1.22) * 2.5rem);
+    --text-fluid-display: calc(3rem + pow(var(--fluid-progress), 1.35) * 5.5rem);
+  }
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html, body { min-height: 100%; }
+  html {
+    scroll-behavior: smooth;
+    scrollbar-color: var(--dim) transparent;
+    scrollbar-gutter: stable;
+    scrollbar-width: auto;
+  }
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-oz-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: var(--accent); color: var(--background); }
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  button:not(:disabled) { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  :focus-visible { outline: 2px dashed var(--accent); outline-offset: 4px; }
+}
+
+@utility oz-skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  transform: translateY(calc(-100% - 1rem));
+  background: var(--accent);
+  color: var(--background);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-oz-mono);
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+  &:focus-visible { transform: translateY(0); }
+}
+
+@utility powerline-segment {
+  clip-path: polygon(0 0, calc(100% - 0.7rem) 0, 100% 50%, calc(100% - 0.7rem) 100%, 0 100%, 0.7rem 50%);
+}
+@utility text-fluid-body { font-size: var(--text-fluid-body); }
+@utility text-fluid-heading { font-size: var(--text-fluid-heading); }
+@utility text-fluid-display { font-size: var(--text-fluid-display); }
+
+@utility dropdown-anchor {
+  anchor-name: var(--dropdown-anchor-name);
+}
+
+@utility dropdown-popover {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  inset: auto;
+  margin: 0;
+  max-block-size: min(22rem, calc(100dvh - 2rem));
+  overflow: visible;
+  padding: 0;
+  position: fixed;
+  position-anchor: var(--dropdown-anchor-name);
+  position-area: bottom span-right;
+  position-try-fallbacks: flip-block;
+  position-visibility: anchors-visible;
+  width: anchor-size(width);
+}
+
+@utility dropdown-panel {
+  max-block-size: min(22rem, calc(100dvh - 2rem));
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--dim) transparent;
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
+  }
+}
