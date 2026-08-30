@@ -1,0 +1,73 @@
+---
+import { APP_ENV } from "astro:env/server";
+import { ClientRouter } from "astro:transitions";
+import SiteFooter from "../components/astro/SiteFooter.astro";
+import { siteConfig } from "../config/site";
+import AnalyticsRuntime from "../integrations/posthog/AnalyticsRuntime.astro";
+import { createSeo } from "../lib/seo";
+import "../styles/global.css";
+
+interface Props {
+	description?: string;
+	noindex?: boolean;
+	path?: string;
+	preloadIdentity?: boolean;
+	title: string;
+}
+
+const { description, noindex = false, path, preloadIdentity = false, title } = Astro.props;
+const seo = description && path ? createSeo({ description, path, title }) : undefined;
+const shouldNoIndex = noindex || APP_ENV !== "production";
+---
+
+<!doctype html>
+<html lang="en" transition:animate="none">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#181B26" />
+		<meta name="color-scheme" content="dark" />
+		<title>{title}</title>
+		{shouldNoIndex && <meta name="robots" content="noindex, nofollow, noarchive" />}
+		{seo && (
+			<>
+				<meta name="description" content={seo.description} />
+				<meta name="author" content={siteConfig.owner} />
+				<link rel="canonical" href={seo.url} />
+				<meta property="og:title" content={seo.title} />
+				<meta property="og:description" content={seo.description} />
+				<meta property="og:image" content={seo.image} />
+				<meta property="og:image:alt" content={seo.imageAlt} />
+				<meta property="og:image:height" content="630" />
+				<meta property="og:image:type" content="image/png" />
+				<meta property="og:image:width" content="1200" />
+				<meta property="og:site_name" content={siteConfig.name} />
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content={seo.url} />
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:creator" content="@OzmahG" />
+				<meta name="twitter:description" content={seo.description} />
+				<meta name="twitter:image" content={seo.image} />
+				<meta name="twitter:image:alt" content={seo.imageAlt} />
+				<meta name="twitter:title" content={seo.title} />
+				<meta name="twitter:url" content={seo.url} />
+			</>
+		)}
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+		<link rel="manifest" href="/site.webmanifest" />
+		{preloadIdentity && <link rel="preload" as="image" href="/images/identity/me.webp" type="image/webp" fetchpriority="high" />}
+		{preloadIdentity && <link rel="preload" as="image" href="/images/identity/me-anime.webp" type="image/webp" fetchpriority="high" />}
+		<ClientRouter fallback="swap" />
+	</head>
+	<body>
+		<AnalyticsRuntime />
+		<a class="oz-skip-link" href="#main-content">Skip to content</a>
+		<div class="flex min-h-dvh flex-col">
+			<main class="flex flex-1 flex-col" id="main-content"><slot /></main>
+			<SiteFooter pathname={path ?? Astro.url.pathname} />
+		</div>
+	</body>
+</html>

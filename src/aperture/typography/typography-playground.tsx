@@ -11,7 +11,7 @@ import type {
 	RefObject,
 } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { cn } from "@/lib/cn";
+import { cn } from "../../components/react/cn";
 import {
 	getTypographyPiece,
 	INITIAL_TYPOGRAPHY_COMPOSITION,

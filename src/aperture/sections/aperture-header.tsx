@@ -1,6 +1,5 @@
 import { ArrowLeftIcon } from "@phosphor-icons/react/ArrowLeft";
-import { Link } from "@tanstack/react-router";
-import { TuiWordmark } from "@/components/brand/tui-wordmark";
+import { TuiWordmark } from "../../components/react/brand/tui-wordmark";
 
 export function ApertureHeader() {
 	return (
@@ -8,10 +7,10 @@ export function ApertureHeader() {
 			<nav aria-label="Breadcrumb">
 				<ol className="m-0 flex list-none items-center gap-2 p-0 font-oz-mono text-sm uppercase tracking-wider">
 					<li>
-						<Link
+						<a
 							aria-label="Back to OzmahDev home"
 							className="group inline-flex min-h-11 items-center gap-2 text-oz-dim no-underline transition-colors duration-150 ease-out hover:text-oz-lime focus-visible:text-oz-lime"
-							to="/"
+							href="/"
 						>
 							<ArrowLeftIcon
 								aria-hidden="true"
@@ -20,7 +19,7 @@ export function ApertureHeader() {
 								weight="regular"
 							/>
 							OzmahDev
-						</Link>
+						</a>
 					</li>
 					<li aria-current="page" className="text-oz-lime">
 						<span aria-hidden="true" className="mr-2 text-oz-dim">

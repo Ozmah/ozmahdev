@@ -1,0 +1,4 @@
+header X-Robots-Tag "noindex, nofollow, noarchive"
+
+@previewDocuments path / /404.html /aperture /contact /privacy /work /robots.txt /sitemap.xml
+header @previewDocuments Cache-Control "no-store"

@@ -14,22 +14,39 @@ jobs:
   validate:
     runs-on: ubuntu-24.04
     env:
+      ASTRO_TELEMETRY_DISABLED: "1"
+      HUSKY: "0"
       NODE_OPTIONS: --max-old-space-size=6144
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "24.13.0"
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: "1.4.0"
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Load and validate environment variables
-        uses: dmno-dev/varlock-action@7410a69ccaeb6f74ef9bc4a2e4b18a11a9cbc4bd # v1.0.1
-
-      - name: Run static validation and build
+      - name: Run quality gate
         run: bun run glados
+
+      - name: Build and test preview image
+        run: |
+          docker build --build-arg APP_ENV=preview --tag ozmah-dev-astro:preview .
+          ./scripts/smoke-container.sh ozmah-dev-astro:preview preview 3100
+
+      - name: Build and test production image
+        run: |
+          docker build \
+            --build-arg APP_ENV=production \
+            --build-arg PUBLIC_POSTHOG_KEY=ci_public_placeholder \
+            --tag ozmah-dev-astro:production .
+          ./scripts/smoke-container.sh ozmah-dev-astro:production production 3101

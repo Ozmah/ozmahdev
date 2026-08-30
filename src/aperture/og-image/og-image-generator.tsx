@@ -2,8 +2,8 @@ import { CheckIcon } from "@phosphor-icons/react/Check";
 import { CopyIcon } from "@phosphor-icons/react/Copy";
 import { DownloadSimpleIcon } from "@phosphor-icons/react/DownloadSimple";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { TextInput } from "@/components/ui/text-field";
+import { Button } from "../../components/react/ui/button";
+import { TextInput } from "../../components/react/ui/text-field";
 import {
 	canvasToPngBlob,
 	defaultOgImageContent,

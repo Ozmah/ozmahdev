@@ -4,7 +4,7 @@ import {
 	type DropdownOption,
 	MultiSelect,
 	Select,
-} from "@/components/ui/dropdown";
+} from "../../components/react/ui/dropdown";
 import { AperturePanel } from "../aperture-panel";
 
 const projectOptions: DropdownOption[] = [

@@ -1,12 +1,13 @@
 # OzmahDev
 
-This is my personal site.
+This is my personal site.  In Astro now :P
 
 Introduction, ways to contact me, some of my work and some experiments.
 
 ## Stack
 
-- TanStack Start
+- Astro
+- React islands
 - Tailwind CSS v4
 - Vite
 - Bun
@@ -14,7 +15,8 @@ Introduction, ways to contact me, some of my work and some experiments.
 
 ## Requirements
 
-- Bun
+- Node.js 24.13.0
+- Bun 1.4.0
 
 ## Install
 
@@ -42,16 +44,19 @@ bun run glados
 
 Runs:
 
-1. Biome check
-2. TypeScript check
-3. Production build
+1. Environment validation and secrets scan
+2. Biome check
+3. Astro and TypeScript check
+4. Tests
+5. Production build
 
 ## Useful scripts
 
 ```bash
 bun run dev          # start dev server
 bun run build        # production build
-bun run check-types  # TypeScript only
+bun run check-types  # Astro and TypeScript
+bun run test         # tests
 bun run check        # Biome check with writes
 bun run glados       # full validation gate
 ```

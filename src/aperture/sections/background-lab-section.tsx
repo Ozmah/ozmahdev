@@ -3,10 +3,10 @@ import {
 	defaultGridBackgroundSettings,
 	GridBackground,
 	type GridBackgroundSettings,
-} from "@/components/backgrounds/grid-background";
-import { Button } from "@/components/ui/button";
-import { RangeField } from "@/components/ui/range-field";
-import { Switch } from "@/components/ui/switch";
+} from "../../components/react/backgrounds/grid-background";
+import { Button } from "../../components/react/ui/button";
+import { RangeField } from "../../components/react/ui/range-field";
+import { Switch } from "../../components/react/ui/switch";
 import { AperturePanel } from "../aperture-panel";
 
 export function BackgroundLabSection() {

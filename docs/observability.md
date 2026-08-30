@@ -27,7 +27,7 @@ PostHog still receives ephemeral pseudonymous device, session, and window identi
 
 Use a dedicated PostHog project for `ozmah.dev`; never reuse the Tarkov Farm project token.
 
-1. Set `VITE_POSTHOG_KEY` and `VITE_POSTHOG_HOST` as Railway build variables.
+1. Set `PUBLIC_POSTHOG_KEY` and `PUBLIC_POSTHOG_HOST` as Railway build variables.
 2. Keep the default host `https://us.i.posthog.com` for a US project token.
 3. In **Settings → Project → General → IP data capture configuration**, enable **Discard client IP data**.
 4. Keep GeoIP enrichment enabled so country can be derived before the raw IP is discarded.
@@ -36,7 +36,7 @@ Use a dedicated PostHog project for `ozmah.dev`; never reuse the Tarkov Farm pro
 7. Keep session replay, surveys, heatmaps, autocapture, exception autocapture, and feature flags disabled in the project UI.
 8. Select a maximum 12-month retention and require MFA for project access.
 
-The project token is public by design. Never put a PostHog Personal API Key in a `VITE_*` variable.
+The project token is public by design. Never put a PostHog Personal API Key in a `PUBLIC_*` variable.
 
 ## Suggested dashboards
 
@@ -76,5 +76,5 @@ Before considering analytics active:
 3. Confirm the browser creates no PostHog cookies or storage entries.
 4. Confirm `$ip` is absent from stored events.
 5. Confirm country properties remain available.
-6. Confirm one pageview per initial load and TanStack Router navigation.
-7. Confirm the production CSP reports no unexpected origins. Enforcing it requires a separate nonce/hash migration for TanStack Start's inline scripts; do not simply rename the header.
+6. Confirm one pageview per document navigation.
+7. Confirm the production CSP reports no unexpected origins. Enforcing it requires a separate hash migration for Astro's inline island scripts; do not simply rename the header.
