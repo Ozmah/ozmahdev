@@ -24,8 +24,12 @@ home_headers=$(curl --silent --show-error --dump-header - --output /dev/null "$b
 printf "%s" "$home_headers" | grep -qi '^X-Content-Type-Options: nosniff'
 printf "%s" "$home_headers" | grep -qi '^X-Frame-Options: DENY'
 printf "%s" "$home_headers" | grep -qi '^Referrer-Policy: strict-origin-when-cross-origin'
-if printf "%s" "$home_headers" | grep -qi '^Server:'; then
-	echo "Server header is exposed" >&2
+server_header=$(
+	printf "%s" "$home_headers" |
+		awk 'tolower($1) == "server:" { value = tolower($2); sub(/\r$/, "", value); print value; exit }'
+)
+if [ -n "$server_header" ] && [ "$server_header" != cloudflare ]; then
+	echo "Unexpected Server header is exposed: $server_header" >&2
 	exit 1
 fi
 

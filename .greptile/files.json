@@ -1,20 +1,28 @@
 {
 	"files": [
 		{
-			"path": "package.json",
-			"description": "Project scripts and dependency surface. `glados` is the primary quality gate: environment validation, secret scanning, Biome, Astro and TypeScript checks, tests, production build, and static-output verification."
-		},
-		{
-			"path": "src/styles/global.css",
-			"description": "Global OzmahDev token foundation: local fonts, Tailwind v4 theme tokens, colors, typography aliases, spacing, focus, motion, component classes, and global base styles."
+			"path": "astro.config.mjs",
+			"description": "Treat environment names as an external deployment API. APP_ENV must remain fail-closed and limited to preview/production. Client-context values are shipped to browsers; never place secrets there. Changes to output mode, trailing slashes, integrations, or env names require matching Docker, Caddy, Railway, and build-verifier changes."
 		},
 		{
 			"path": "src/layouts/BaseLayout.astro",
-			"description": "Shared document shell: SEO metadata, JSON-LD, Astro ClientRouter, analytics entrypoint, navigation, and global styles."
+			"description": "Protect cross-page invariants: preview must stay noindex, public pages must retain canonical/OG metadata, ClientRouter navigation must not duplicate global listeners or analytics, and ordinary pages must remain Astro-only without accidental React hydration."
 		},
 		{
-			"path": "src/pages/aperture.astro",
-			"description": "Internal component lab that hosts the only React island. Used to expose spacing, sizing, focus, responsive, and interaction problems before components reach public pages."
+			"path": "src/integrations/posthog/analytics-runtime.ts",
+			"description": "This is a privacy boundary. Reject changes that enable persistence, profiles, autocapture, recording, remote dependencies, arbitrary event values, query/hash capture, or analytics under GPC/DNT. ClientRouter navigation must emit exactly one sanitized pageview while global listeners initialize only once."
+		},
+		{
+			"path": "scripts/verify-static-build.mjs",
+			"description": "Executable contract for static output. Route, SEO, script-loading, environment, font, or licensing changes must update these assertions without weakening preview isolation, production indexability, or the no-unexpected-JavaScript guarantee."
+		},
+		{
+			"path": "Caddyfile",
+			"description": "Production runtime contract: serve static files with real 404 status, environment-specific crawler policy, conservative caching, compression, and security headers. APP_ENV imports must fail closed; only fingerprinted assets may be immutable."
+		},
+		{
+			"path": "Dockerfile",
+			"description": "Preserve the multi-stage trust boundary: frozen dependencies and validated static build in Node/Bun, then only Caddy plus dist in the non-root runtime. Base images stay digest-pinned. Build ARG names are Railway-facing API and renames are breaking deployment changes."
 		}
 	]
 }
