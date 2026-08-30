@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { TextArea, TextInput } from "@/components/ui/text-field";
+import { Button } from "../../components/react/ui/button";
+import { TextArea, TextInput } from "../../components/react/ui/text-field";
 
 export function ArtifactSurfaceSection() {
 	return (

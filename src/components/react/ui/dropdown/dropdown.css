@@ -1,0 +1,28 @@
+.dropdown-anchor {
+	anchor-name: var(--dropdown-anchor-name);
+}
+
+.dropdown-popover {
+	background: transparent;
+	border: 0;
+	color: inherit;
+	inset: auto;
+	margin: 0;
+	max-block-size: min(22rem, calc(100dvh - 2rem));
+	overflow: visible;
+	padding: 0;
+	position: fixed;
+	position-anchor: var(--dropdown-anchor-name);
+	position-area: bottom span-right;
+	position-try-fallbacks: flip-block;
+	position-visibility: anchors-visible;
+	width: anchor-size(width);
+}
+
+.dropdown-panel {
+	max-block-size: min(22rem, calc(100dvh - 2rem));
+	overflow: auto;
+	overscroll-behavior: contain;
+	scrollbar-color: var(--dim) transparent;
+	scrollbar-gutter: stable;
+}

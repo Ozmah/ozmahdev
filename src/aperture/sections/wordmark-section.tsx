@@ -1,4 +1,4 @@
-import { TuiWordmark } from "@/components/brand/tui-wordmark";
+import { TuiWordmark } from "../../components/react/brand/tui-wordmark";
 import { AperturePanel } from "../aperture-panel";
 
 const glyphGroups = [

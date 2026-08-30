@@ -1,0 +1,12 @@
+---
+import { PUBLIC_POSTHOG_HOST, PUBLIC_POSTHOG_KEY } from "astro:env/client";
+import { APP_ENV } from "astro:env/server";
+
+const EXPECTED_POSTHOG_HOST = "https://us.i.posthog.com";
+const enabled =
+	APP_ENV === "production" &&
+	Boolean(PUBLIC_POSTHOG_KEY?.trim()) &&
+	PUBLIC_POSTHOG_HOST === EXPECTED_POSTHOG_HOST;
+---
+
+{enabled && <script>import { startAnalytics } from "./analytics-runtime"; startAnalytics();</script>}

@@ -1,0 +1,33 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+	pathname: string;
+}
+
+const { pathname } = Astro.props;
+const isAperture = pathname === "/aperture";
+const isPrivacy = pathname === "/privacy";
+---
+
+<footer class="px-5 sm:px-8 lg:px-0">
+	<div class="mx-auto flex min-h-20 w-full max-w-5xl items-center justify-between gap-4">
+		<p class="m-0 font-oz-mono text-dim text-xs tracking-[0.08em]">
+			© ozmah 2026
+			<Icon class="ml-2 inline text-dim" name="paw" size={15} />
+		</p>
+
+		{!isPrivacy && (
+			<div class="flex items-center gap-2">
+				<a class="px-2 py-3 font-oz-mono text-dim text-xs tracking-[0.08em] no-underline transition-colors duration-150 ease-out hover:text-accent focus-visible:text-accent" href="/privacy">privacy</a>
+				<a aria-label={isAperture ? "Back to OzmahDev home" : "Open the Aperture component lab"} class="group inline-flex size-11 items-center justify-center text-dim no-underline transition-colors duration-150 ease-out hover:text-accent focus-visible:text-accent" href={isAperture ? "/" : "/aperture"}>
+					{isAperture ? (
+						<Icon class="transition-transform duration-150 ease-out group-hover:-translate-x-0.5 group-focus-visible:-translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none" name="arrowLeft" />
+					) : (
+						<Icon class="rotate-0 transition-transform duration-500 ease-out group-hover:rotate-360 group-focus-visible:rotate-360 motion-reduce:transform-none motion-reduce:transition-none" name="aperture" />
+					)}
+				</a>
+			</div>
+		)}
+	</div>
+</footer>

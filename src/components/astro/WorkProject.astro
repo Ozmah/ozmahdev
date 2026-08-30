@@ -1,0 +1,39 @@
+---
+interface Props {
+	alt: string;
+	comment: string;
+	destinationType?: string;
+	height: number;
+	href?: string;
+	linkLabel?: string;
+	projectSlug: string;
+	src: string;
+	title: string;
+	width: number;
+}
+
+const { alt, comment, destinationType, height, href, linkLabel, projectSlug, src, title, width } = Astro.props;
+const Wrapper = href ? "a" : "div";
+---
+
+<article class="border-border-strong border-t pt-5">
+	<Wrapper
+		class={href ? "group block text-inherit no-underline focus-visible:outline-offset-4" : undefined}
+		data-analytics-destination-type={destinationType}
+		data-analytics-event={destinationType ? "outbound_link_clicked" : undefined}
+		data-analytics-placement={destinationType ? "work_grid" : undefined}
+		data-analytics-project-slug={destinationType ? projectSlug : undefined}
+		href={href}
+		rel={href ? "noopener noreferrer" : undefined}
+		target={href ? "_blank" : undefined}
+	>
+		<img alt={alt} class="aspect-8/5 w-full border border-border-strong object-cover object-top" decoding="async" height={height} loading="lazy" src={src} width={width} />
+		<div class="grid gap-3 pt-5 sm:grid-cols-[1fr_auto] sm:items-baseline">
+			<h2 class="m-0 font-oz-display text-3xl text-foreground uppercase leading-none tracking-[-0.04em] group-hover:text-accent group-focus-visible:text-accent sm:text-4xl">
+				{title}{href && <span class="sr-only"> (opens in a new tab)</span>}
+			</h2>
+			{linkLabel && <p class:list={["m-0 font-oz-mono text-[0.7rem] tracking-[0.08em]", href ? "text-accent" : "text-dim"]}>{linkLabel}</p>}
+		</div>
+	</Wrapper>
+	<p class="mt-4 mb-0 max-w-2xl text-muted leading-7">{comment}</p>
+</article>

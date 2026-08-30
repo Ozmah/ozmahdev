@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/react/ui/button";
 import { AperturePanel } from "../aperture-panel";
 
 export function ButtonsSection() {

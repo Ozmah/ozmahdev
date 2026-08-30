@@ -1,43 +1,36 @@
-# syntax=docker/dockerfile:1
+FROM oven/bun:1.4.0-alpine@sha256:07235578f79ef8c6f97d94aee7938e76f5cdba5f21ae5dbfdd3d3d38058437eb AS bun
 
-ARG BUN_VERSION=1.4.0
-
-FROM oven/bun:${BUN_VERSION}-debian AS dependencies
+FROM node:24.13.0-alpine@sha256:cd6fb7efa6490f039f3471a189214d5f548c11df1ff9e5b181aa49e22c14383e AS build
 WORKDIR /app
+ENV ASTRO_TELEMETRY_DISABLED=1 \
+	HUSKY=0
 
-COPY --link package.json bun.lock ./
+COPY --from=bun /usr/local/bin/bun /usr/local/bin/bun
+COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
-FROM dependencies AS builder
-WORKDIR /app
+COPY . .
+ARG APP_ENV=preview
+ARG PUBLIC_POSTHOG_KEY
+ARG PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+RUN APP_ENV="$APP_ENV" \
+	PUBLIC_POSTHOG_KEY="$PUBLIC_POSTHOG_KEY" \
+	PUBLIC_POSTHOG_HOST="$PUBLIC_POSTHOG_HOST" \
+	bun run build
 
-ARG VITE_POSTHOG_HOST=https://us.i.posthog.com
-ARG VITE_POSTHOG_KEY=""
-ENV VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST
-ENV VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY
+FROM caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d AS runtime
 
-COPY --link . .
+RUN addgroup -S -g 1001 app \
+	&& adduser -S -D -H -u 1001 -G app app \
+	&& mkdir -p /srv \
+	&& chown -R app:app /srv
 
-ENV NODE_ENV=production
-ENV APP_ENV=production
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY caddy /etc/caddy/environments
+COPY --from=build --chown=app:app /app/dist /srv
 
-RUN bun run glados
-
-FROM oven/bun:${BUN_VERSION}-debian AS runner
-WORKDIR /app
-
-RUN groupadd --gid 1001 --system ozmah \
-	&& useradd --uid 1001 --gid ozmah --system --create-home ozmah
-
-COPY --from=builder --chown=ozmah:ozmah /app/.output ./.output
-
-ENV NODE_ENV=production
-ENV APP_ENV=production
-ENV HOST=0.0.0.0
-ENV PORT=3000
+USER app
 
 EXPOSE 3000
 
-USER ozmah
-
-CMD ["bun", ".output/server/index.mjs"]
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
