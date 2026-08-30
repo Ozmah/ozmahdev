@@ -12,10 +12,12 @@ const pages = {
 	"aperture/index.html": { noindex: true, title: "The Lab | OzmahDev" },
 	"contact/index.html": {
 		canonical: "https://ozmah.dev/contact",
+		currentNavigationHref: "/contact",
 		title: "Contact | OzmahDev",
 	},
 	"index.html": {
 		canonical: "https://ozmah.dev/",
+		currentNavigationHref: "/",
 		title: "OzmahDev | Gabriel Alegría",
 	},
 	"privacy/index.html": {
@@ -24,6 +26,7 @@ const pages = {
 	},
 	"work/index.html": {
 		canonical: "https://ozmah.dev/work",
+		currentNavigationHref: "/work",
 		title: "My Work | OzmahDev",
 	},
 };
@@ -40,6 +43,22 @@ for (const [relativePath, expected] of Object.entries(pages)) {
 		assert(
 			html.includes(`rel="canonical" href="${expected.canonical}"`),
 			`${relativePath} has an invalid canonical`,
+		);
+	}
+
+	if (expected.currentNavigationHref) {
+		const currentPageLinks = [
+			...html.matchAll(/<a\b[^>]*\baria-current="page"[^>]*>/g),
+		];
+		assert(
+			currentPageLinks.length === 1,
+			`${relativePath} must contain one current navigation link`,
+		);
+		assert(
+			currentPageLinks[0][0].includes(
+				`href="${expected.currentNavigationHref}"`,
+			),
+			`${relativePath} has an invalid current navigation link`,
 		);
 	}
 

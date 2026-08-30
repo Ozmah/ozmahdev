@@ -14,7 +14,7 @@ export default defineConfig({
 			APP_ENV: envField.enum({
 				context: "server",
 				access: "public",
-				values: ["development", "preview", "production", "test"],
+				values: ["preview", "production"],
 				default: "preview",
 			}),
 			PUBLIC_POSTHOG_KEY: envField.string({
