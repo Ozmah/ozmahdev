@@ -1,0 +1,24 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+const description = "Notes on interfaces, experiments, and the work behind OzmahDev.";
+---
+
+<BlogLayout backHref="/" backLabel="Back to OzmahDev home" description={description} path="/blog" title="Blog | OzmahDev">
+	<div class="max-w-3xl pb-20 sm:pb-28">
+		<header class="border-border-strong border-b pb-8 sm:pb-10">
+			<h1 class="m-0 max-w-[20ch] font-oz-display text-fluid-heading tracking-[-0.04em] text-balance">Blog</h1>
+		</header>
+
+		<ol class="m-0 list-none p-0">
+			<li class="border-border border-b py-8 sm:py-10">
+				<article class="grid gap-3">
+					<h2 class="m-0 max-w-[32ch] font-oz-display text-3xl tracking-[-0.04em] text-balance sm:text-2xl">
+						<a class="text-foreground no-underline hover:text-accent focus-visible:text-accent" href="/blog/canvas-from-ui-to-ux">Canvas, from UI to UX</a>
+					</h2>
+					<time class="font-oz-mono text-base/6 text-dim tabular-nums sm:text-sm/5" datetime="2026-08-31">August 31, 2026</time>
+				</article>
+			</li>
+		</ol>
+	</div>
+</BlogLayout>

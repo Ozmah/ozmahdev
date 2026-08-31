@@ -1,0 +1,85 @@
+---
+import { ReceiptGenerator } from "../../aperture/receipt/receipt-generator";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+const description = "Canvas, from UI to UX: a placeholder editorial study of interface experiments on OzmahDev.";
+---
+
+<BlogLayout backHref="/blog" backLabel="Back to blog" description={description} ogType="article" path="/blog/canvas-from-ui-to-ux" title="Canvas, from UI to UX | OzmahDev">
+	<article class="min-w-0 pb-20 sm:pb-28">
+		<header class="grid gap-5">
+			<h1 class="m-0 max-w-[24ch] font-oz-display text-fluid-heading tracking-[-0.04em] text-balance">Canvas, from UI to UX</h1>
+			<p class="m-0 max-w-[48ch] text-pretty text-lg/8 text-muted sm:text-base/7">How I'm filling my projects with good ux and bad pngs</p>
+		</header>
+
+		<figure class="m-0 mt-10 sm:mt-12">
+					<img alt="Ozmah.dev social card with the text: Hi, I'm Gabriel. Mostly a web developer." class="h-auto w-full outline-1 -outline-offset-1 outline-white/10" decoding="async" fetchpriority="high" height="630" src="/ozmah-dev-og.png" width="1200" />
+					<figcaption class="mt-3 font-oz-mono text-sm text-dim">The current OzmahDev social card.</figcaption>
+				</figure>
+
+		<div class="mt-10 grid gap-8 border-border border-t pt-10 text-pretty text-base/7 text-muted sm:mt-12 sm:gap-10 sm:pt-12 sm:text-sm/6">
+					<p class="m-0 max-w-[68ch]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel risus ac sapien feugiat imperdiet, sed lacinia augue dictum. Nulla facilisi. Mauris vel eros sed arcu ultricies interdum.</p>
+
+					<section aria-labelledby="small-decisions-heading" class="grid gap-5">
+						<h2 class="m-0 max-w-[30ch] font-oz-display text-3xl tracking-[-0.04em] text-foreground text-pretty" id="small-decisions-heading">Small decisions, visible signals</h2>
+						<p class="m-0 max-w-[68ch]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lacus non consectetur viverra, metus nibh posuere quam, eu pretium libero nisl sit amet orci.</p>
+						<figure class="m-0 border border-border-strong bg-surface font-oz-mono text-base/7 text-muted sm:text-sm/6">
+							<figcaption class="px-5 pt-5 text-sm uppercase tracking-wide text-accent sm:px-6 sm:pt-6">TypeScript</figcaption>
+							<pre class="m-0 overflow-x-auto overscroll-x-contain p-5 pt-2 sm:p-6 sm:pt-2"><code><span class="text-accent">type</span> CanvasPoint = &#123;
+  x: <span class="text-accent">number</span>;
+  y: <span class="text-accent">number</span>;
+&#125;;
+
+<span class="text-accent">const</span> place = (point: CanvasPoint) =&gt; (&#123;
+  ...point,
+  label: <span class="text-accent-strong">"a useful pixel"</span>,
+&#125;);</code></pre>
+						</figure>
+					</section>
+
+					<section aria-labelledby="feedback-heading" class="grid gap-5">
+						<h2 class="m-0 max-w-[30ch] font-oz-display text-3xl tracking-[-0.04em] text-foreground text-pretty" id="feedback-heading">Give the sketch a job</h2>
+						<p class="m-0 max-w-[68ch]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sollicitudin neque sed nisl posuere, vitae fermentum arcu aliquam. Suspendisse non mi sed turpis facilisis feugiat.</p>
+						<figure class="m-0 border border-border-strong bg-surface font-oz-mono text-base/7 text-muted sm:text-sm/6">
+							<figcaption class="px-5 pt-5 text-sm uppercase tracking-wide text-accent sm:px-6 sm:pt-6">TypeScript</figcaption>
+							<pre class="m-0 overflow-x-auto overscroll-x-contain p-5 pt-2 sm:p-6 sm:pt-2"><code><span class="text-accent">interface</span> Feedback &#123;
+  source: <span class="text-accent">string</span>;
+  friction: <span class="text-accent">number</span>;
+&#125;
+
+<span class="text-accent">const</span> signals: Feedback[] = [
+  &#123; source: <span class="text-accent-strong">"prototype"</span>, friction: 2 &#125;,
+];
+
+console.table(signals);</code></pre>
+						</figure>
+					</section>
+
+					<section aria-labelledby="receipt-demo-heading" class="grid gap-5 border-border border-t pt-8 sm:pt-10">
+						<div>
+							<p class="m-0 font-oz-mono text-base/6 uppercase tracking-wide text-accent sm:text-sm/5">Interactive demo</p>
+							<h2 class="mt-3 max-w-[30ch] font-oz-display text-3xl tracking-[-0.04em] text-foreground text-pretty" id="receipt-demo-heading">A canvas with consequences</h2>
+						</div>
+						<p class="m-0 max-w-[68ch]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget erat non nunc ullamcorper sagittis. This small receipt experiment keeps the visual artifact and its controls in the same conversation.</p>
+						<div class="border border-border-strong bg-surface p-4 sm:p-6">
+							<ReceiptGenerator client:visible />
+						</div>
+					</section>
+
+					<section aria-labelledby="return-heading" class="grid gap-5">
+						<h2 class="m-0 max-w-[30ch] font-oz-display text-3xl tracking-[-0.04em] text-foreground text-pretty" id="return-heading">Return to the interface</h2>
+						<p class="m-0 max-w-[68ch]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Vivamus luctus, ligula quis sodales malesuada, dolor lectus eleifend nibh, vitae consequat lacus sem at augue.</p>
+						<figure class="m-0 border border-border-strong bg-surface font-oz-mono text-base/7 text-muted sm:text-sm/6">
+							<figcaption class="px-5 pt-5 text-sm uppercase tracking-wide text-accent sm:px-6 sm:pt-6">TypeScript</figcaption>
+							<pre class="m-0 overflow-x-auto overscroll-x-contain p-5 pt-2 sm:p-6 sm:pt-2"><code><span class="text-accent">function</span> renderNote(canvas: HTMLCanvasElement) &#123;
+  <span class="text-accent">const</span> context = canvas.getContext(<span class="text-accent-strong">"2d"</span>);
+  <span class="text-accent">if</span> (!context) <span class="text-accent">return</span>;
+
+  context.fillText(<span class="text-accent-strong">"Make the next action obvious."</span>, 24, 40);
+&#125;</code></pre>
+						</figure>
+						<p class="m-0 max-w-[68ch]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur cursus sapien sed dui pulvinar, at efficitur nibh tincidunt. Sed a leo purus. Integer tincidunt risus at semper aliquet.</p>
+					</section>
+		</div>
+	</article>
+</BlogLayout>

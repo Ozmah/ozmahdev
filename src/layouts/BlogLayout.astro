@@ -1,0 +1,26 @@
+---
+import Icon from "../components/astro/Icon.astro";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+	backHref: "/" | "/blog";
+	backLabel: string;
+	description: string;
+	ogType?: "article" | "website";
+	path: string;
+	title: string;
+}
+
+const { backHref, backLabel, description, ogType = "website", path, title } = Astro.props;
+---
+
+<BaseLayout description={description} ogType={ogType} path={path} showFooter={false} title={title}>
+	<div class="mx-auto flex w-full max-w-5xl flex-1 flex-col px-5 py-8 text-foreground sm:px-8 sm:py-10 lg:px-0 lg:py-14">
+		<header class="mb-12 sm:mb-16">
+			<a aria-label={backLabel} class="group -ml-3 inline-flex size-12 items-center justify-center text-muted no-underline hover:text-accent focus-visible:text-accent" href={backHref}>
+				<Icon class="shrink-0 transition-transform duration-150 ease-out group-hover:-translate-x-0.5 group-focus-visible:-translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none" name="arrowLeft" size={24} />
+			</a>
+		</header>
+		<slot />
+	</div>
+</BaseLayout>

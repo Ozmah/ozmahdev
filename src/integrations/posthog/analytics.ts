@@ -30,6 +30,7 @@ type WebVitalsEventProperties = {
 
 type AnalyticsRoute =
 	| "aperture"
+	| "blog"
 	| "contact"
 	| "home"
 	| "other"
@@ -105,6 +106,8 @@ const MAX_PENDING_EVENTS = 25;
 const ROUTE_BY_PATHNAME = {
 	"/": "home",
 	"/aperture": "aperture",
+	"/blog": "blog",
+	"/blog/canvas-from-ui-to-ux": "blog",
 	"/contact": "contact",
 	"/privacy": "privacy",
 	"/work": "work",

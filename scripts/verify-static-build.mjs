@@ -10,6 +10,22 @@ const analyticsExpected =
 const pages = {
 	"404.html": { noindex: true, title: "Not Found | OzmahDev" },
 	"aperture/index.html": { noindex: true, title: "The Lab | OzmahDev" },
+	"blog/canvas-from-ui-to-ux/index.html": {
+		backLabel: "Back to blog",
+		backHref: "/blog",
+		canonical: "https://ozmah.dev/blog/canvas-from-ui-to-ux",
+		minimalBlogShell: true,
+		ogType: "article",
+		receiptGenerator: true,
+		title: "Canvas, from UI to UX | OzmahDev",
+	},
+	"blog/index.html": {
+		backLabel: "Back to OzmahDev home",
+		backHref: "/",
+		canonical: "https://ozmah.dev/blog",
+		minimalBlogShell: true,
+		title: "Blog | OzmahDev",
+	},
 	"contact/index.html": {
 		canonical: "https://ozmah.dev/contact",
 		currentNavigationHref: "/contact",
@@ -46,6 +62,22 @@ for (const [relativePath, expected] of Object.entries(pages)) {
 		);
 	}
 
+	if (expected.backHref) {
+		assert(
+			html.includes(`aria-label="${expected.backLabel}"`) &&
+				html.includes(`href="${expected.backHref}"`),
+			`${relativePath} has an invalid editorial back link`,
+		);
+	}
+
+	if (expected.minimalBlogShell) {
+		assert(
+			!html.includes('aria-label="Primary navigation"') &&
+				!html.includes("<footer"),
+			`${relativePath} must use the minimal editorial shell`,
+		);
+	}
+
 	if (expected.currentNavigationHref) {
 		const currentPageLinks = [
 			...html.matchAll(/<a\b[^>]*\baria-current="page"[^>]*>/g),
@@ -62,6 +94,29 @@ for (const [relativePath, expected] of Object.entries(pages)) {
 		);
 	}
 
+	if (expected.currentNavigationHrefs) {
+		const currentPageLinks = [
+			...html.matchAll(/<a\b[^>]*\baria-current="page"[^>]*>/g),
+		];
+		assert(
+			currentPageLinks.length === expected.currentNavigationHrefs.length,
+			`${relativePath} has an unexpected number of current navigation links`,
+		);
+		for (const href of expected.currentNavigationHrefs) {
+			assert(
+				currentPageLinks.some((link) => link[0].includes(`href="${href}"`)),
+				`${relativePath} is missing current navigation link ${href}`,
+			);
+		}
+	}
+
+	if (expected.ogType) {
+		assert(
+			html.includes(`property="og:type" content="${expected.ogType}"`),
+			`${relativePath} has an invalid Open Graph type`,
+		);
+	}
+
 	const shouldNoIndex = expected.noindex || appEnvironment !== "production";
 	assert(
 		html.includes('name="robots" content="noindex, nofollow') ===
@@ -75,6 +130,7 @@ for (const [relativePath, expected] of Object.entries(pages)) {
 		assert(
 			url.includes("ClientRouter") ||
 				(analyticsExpected && url.includes("AnalyticsRuntime")) ||
+				(expected.receiptGenerator && url.includes("receipt-generator")) ||
 				relativePath === "aperture/index.html",
 			`${relativePath} loads unexpected JavaScript: ${url}`,
 		);
@@ -83,6 +139,14 @@ for (const [relativePath, expected] of Object.entries(pages)) {
 
 const home = read("index.html");
 assert(home.includes('"@type":"Person"'), "home must include Person JSON-LD");
+
+const sitemap = read("sitemap.xml");
+for (const path of ["/blog", "/blog/canvas-from-ui-to-ux"]) {
+	assert(
+		sitemap.includes(`<loc>https://ozmah.dev${path}</loc>`),
+		`sitemap is missing ${path}`,
+	);
+}
 
 const robots = read("robots.txt");
 assert(
