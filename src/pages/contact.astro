@@ -3,6 +3,7 @@ import ContactLinks from "../components/astro/ContactLinks.astro";
 import IdentityMark from "../components/astro/IdentityMark.astro";
 import PageContainer from "../components/astro/PageContainer.astro";
 import SiteNavigation from "../components/astro/SiteNavigation.astro";
+import SitePageTitle from "../components/astro/SitePageTitle.astro";
 import { siteConfig } from "../config/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
@@ -17,7 +18,7 @@ const description = `Contact ${siteConfig.owner} by email, GitHub, LinkedIn, Twi
 		</header>
 		<section class="grid content-start pt-16 sm:pt-20 lg:pt-24">
 			<div class="max-w-136">
-				<h1 class="font-oz-display text-[clamp(1.35rem,1.16rem+0.8vw,1.9rem)] font-bold leading-tight tracking-[-0.04em] text-muted text-balance">Get in touch or find me online!</h1>
+				<SitePageTitle text="Get in touch or find me online!" />
 				<ContactLinks />
 			</div>
 		</section>
