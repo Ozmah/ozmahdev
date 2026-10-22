@@ -1,0 +1,11 @@
+---
+import type { RichText } from "../../data/cv";
+
+interface Props {
+	text: RichText;
+}
+
+const { text } = Astro.props;
+---
+
+{text.map((segment) => (typeof segment === "string" ? segment : <strong class="font-semibold text-foreground">{segment.strong}</strong>))}
