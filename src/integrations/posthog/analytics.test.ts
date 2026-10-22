@@ -19,6 +19,8 @@ describe("analytics privacy helpers", () => {
 	test("classifies routes using pathname only", () => {
 		expect(readAnalyticsRoute("/")).toBe("home");
 		expect(readAnalyticsRoute("/work")).toBe("work");
+		expect(readAnalyticsRoute("/blog")).toBe("blog");
+		expect(readAnalyticsRoute("/blog/canvas-from-ui-to-ux")).toBe("blog");
 		expect(readAnalyticsRoute("/unknown")).toBe("other");
 		expect(readAnalyticsPathname("/private@example.com/reset/token")).toBe(
 			"/404",

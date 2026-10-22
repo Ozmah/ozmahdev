@@ -10,12 +10,14 @@ import "../styles/global.css";
 interface Props {
 	description?: string;
 	noindex?: boolean;
+	ogType?: "article" | "website";
 	path?: string;
 	preloadIdentity?: boolean;
+	showFooter?: boolean;
 	title: string;
 }
 
-const { description, noindex = false, path, preloadIdentity = false, title } = Astro.props;
+const { description, noindex = false, ogType = "website", path, preloadIdentity = false, showFooter = true, title } = Astro.props;
 const seo = description && path ? createSeo({ description, path, title }) : undefined;
 const shouldNoIndex = noindex || APP_ENV !== "production";
 ---
@@ -42,7 +44,7 @@ const shouldNoIndex = noindex || APP_ENV !== "production";
 				<meta property="og:image:type" content="image/png" />
 				<meta property="og:image:width" content="1200" />
 				<meta property="og:site_name" content={siteConfig.name} />
-				<meta property="og:type" content="website" />
+				<meta property="og:type" content={ogType} />
 				<meta property="og:url" content={seo.url} />
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:creator" content="@OzmahG" />
@@ -67,7 +69,7 @@ const shouldNoIndex = noindex || APP_ENV !== "production";
 		<a class="oz-skip-link" href="#main-content">Skip to content</a>
 		<div class="flex min-h-dvh flex-col">
 			<main class="flex flex-1 flex-col" id="main-content"><slot /></main>
-			<SiteFooter pathname={path ?? Astro.url.pathname} />
+			{showFooter && <SiteFooter pathname={path ?? Astro.url.pathname} />}
 		</div>
 	</body>
 </html>

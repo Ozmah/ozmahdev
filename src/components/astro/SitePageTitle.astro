@@ -1,0 +1,9 @@
+---
+interface Props {
+	text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<h1 class="m-0 max-w-[30ch] font-oz-display text-[clamp(1.75rem,1.5rem+1vw,2.25rem)] font-semibold tracking-[-0.04em] text-muted text-balance">{text}</h1>

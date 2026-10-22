@@ -15,7 +15,7 @@ assert_status() {
 	}
 }
 
-for route in / /work /contact /privacy /aperture /robots.txt /sitemap.xml /health; do
+for route in / /work /contact /privacy /aperture /blog /blog/canvas-from-ui-to-ux /robots.txt /sitemap.xml /health; do
 	assert_status "$route" 200
 done
 assert_status /release-verification-not-found 404

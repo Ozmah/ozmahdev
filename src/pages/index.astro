@@ -2,6 +2,7 @@
 import IdentityMark from "../components/astro/IdentityMark.astro";
 import PageContainer from "../components/astro/PageContainer.astro";
 import SiteNavigation from "../components/astro/SiteNavigation.astro";
+import SitePageTitle from "../components/astro/SitePageTitle.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { createPersonStructuredData } from "../lib/seo";
 
@@ -18,7 +19,7 @@ const description = "Personal site of Gabriel Alegría, mostly a web developer."
 
 		<section class="grid content-start pt-8 sm:pt-20 lg:pt-24">
 			<div class="max-w-136">
-				<h1 class="font-oz-display text-[clamp(1.35rem,1.16rem+0.8vw,1.9rem)] font-bold leading-tight tracking-[-0.04em] text-muted text-balance">Hi, I'm Gabriel. Mostly a web developer.</h1>
+				<SitePageTitle text="Hi, I'm Gabriel. Mostly a web developer." />
 				<div class="mt-8 max-w-124 space-y-6 text-[clamp(1rem,0.96rem+0.18vw,1.125rem)] text-muted leading-[1.45] tracking-[-0.035em]">
 					<p>I've been making software for a long time, e-commerce, banking, internal tooling and a lot more.</p>
 					<p>I'm currently a full stack engineer at Internet Brands, working with the Content Team on backend systems, internal tooling, and platform improvements. Outside work, I'm building Consultapp, conjuring new ideas, and contributing to open source any chance I get.</p>
