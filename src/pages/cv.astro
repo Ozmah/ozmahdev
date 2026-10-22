@@ -1,0 +1,110 @@
+---
+import CvRichText from "../components/astro/CvRichText.astro";
+import Icon from "../components/astro/Icon.astro";
+import PageContainer from "../components/astro/PageContainer.astro";
+import { siteConfig } from "../config/site";
+import { cv } from "../data/cv";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Shared by link only, never indexed or listed in the sitemap.
+const sectionHeading = "flex items-baseline gap-4 border-border border-b pb-3";
+const sectionNumber = "font-oz-mono text-accent text-xs tracking-[0.08em]";
+const sectionTitle = "m-0 font-oz-display font-bold text-foreground text-xl uppercase tracking-[-0.02em] sm:text-2xl";
+const bullet =
+	"relative pl-6 before:absolute before:top-[0.6em] before:left-0.5 before:size-1.5 before:rotate-45 before:border before:border-accent before:content-['']";
+---
+
+<BaseLayout noindex path="/cv" title={`CV | ${siteConfig.name}`}>
+	<div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 h-[32rem] text-border [background-image:linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] [background-size:16px_16px] opacity-40 [mask-image:radial-gradient(ellipse_55%_70%_at_85%_0%,#000_0%,rgba(0,0,0,0.5)_50%,transparent_100%)]"></div>
+	<PageContainer class="relative py-10 text-foreground sm:py-14 lg:py-20">
+		<header class="flex items-center justify-between gap-6">
+			<a aria-label="Back to OzmahDev home" class="group -ml-3 inline-flex size-11 items-center justify-center text-dim no-underline transition-colors duration-150 ease-out hover:text-accent focus-visible:text-accent" href="/">
+				<Icon class="transition-transform duration-150 ease-out group-hover:-translate-x-1 group-focus-visible:-translate-x-1 motion-reduce:transform-none motion-reduce:transition-none" name="arrowLeft" />
+			</a>
+			<p class="m-0 font-oz-mono text-dim text-xs uppercase tracking-[0.08em]">Curriculum Vitae <span class="text-border-strong">{"//"}</span> <span class="text-accent">ozmah.dev</span></p>
+		</header>
+
+		<article class="mt-12 sm:mt-16">
+			<header>
+				<h1 class="m-0 font-oz-display font-bold text-[clamp(2rem,1.4rem+2.6vw,3.25rem)] text-foreground uppercase leading-none tracking-[-0.035em] text-balance">{cv.name}</h1>
+				<p class="mt-4 mb-0 font-oz-display font-semibold text-accent text-lg uppercase tracking-[-0.01em]">{cv.role}</p>
+				<ul class="mt-6 flex list-none flex-wrap gap-x-6 gap-y-2 border-border-strong border-t p-0 pt-4 font-oz-mono text-xs tracking-[0.03em]">
+					<li class="text-dim">{cv.location}</li>
+					<li><a class="text-muted no-underline hover:text-accent focus-visible:text-accent" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+					{cv.links.map((link) => (
+						<li><a class="text-accent no-underline hover:text-accent-strong focus-visible:text-accent-strong" href={link.href} rel="noopener noreferrer" target="_blank">{link.label}</a></li>
+					))}
+				</ul>
+			</header>
+
+			<div class="mt-14 grid gap-14 text-muted leading-7">
+				<section aria-labelledby="cv-summary">
+					<div class={sectionHeading}><span class={sectionNumber}>01</span><h2 class={sectionTitle} id="cv-summary">Summary</h2></div>
+					<div class="mt-5 grid gap-4">{cv.summary.map((paragraph) => <p class="m-0">{paragraph}</p>)}</div>
+				</section>
+
+				<section aria-labelledby="cv-skills">
+					<div class={sectionHeading}><span class={sectionNumber}>02</span><h2 class={sectionTitle} id="cv-skills">Core Skills</h2></div>
+					<dl class="m-0 mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-[13rem_1fr]">
+						{cv.skills.map((skill) => (
+							<>
+								<dt class="pt-1 font-oz-mono text-dim text-xs uppercase tracking-[0.06em]">{skill.label}</dt>
+								<dd class="m-0 mb-2 sm:mb-0">{skill.value}</dd>
+							</>
+						))}
+					</dl>
+				</section>
+
+				<section aria-labelledby="cv-ai">
+					<div class={sectionHeading}><span class={sectionNumber}>03</span><h2 class={sectionTitle} id="cv-ai">AI Engineering &amp; Developer Tooling</h2></div>
+					<ul class="mt-5 grid list-none gap-3 p-0">
+						{cv.aiTooling.map((item) => <li class={bullet}><CvRichText text={item} /></li>)}
+					</ul>
+				</section>
+
+				<section aria-labelledby="cv-experience">
+					<div class={sectionHeading}><span class={sectionNumber}>04</span><h2 class={sectionTitle} id="cv-experience">Professional Experience</h2></div>
+					<div class="mt-6 grid gap-10">
+						{cv.experience.map((job) => (
+							<article>
+								<header class="grid gap-1 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-6">
+									<h3 class="m-0 font-oz-display font-bold text-foreground text-lg uppercase leading-tight tracking-[-0.02em] sm:text-xl">
+										{job.company} <span class="font-semibold text-dim">/ {job.role}</span>
+									</h3>
+									<p class="m-0 whitespace-nowrap font-oz-mono text-accent text-xs uppercase tracking-[0.04em]">{job.period}</p>
+								</header>
+								{"subtitle" in job && job.subtitle && <p class="mt-1 mb-0 text-dim text-sm"><CvRichText text={job.subtitle} /></p>}
+								<ul class="mt-4 grid list-none gap-2.5 p-0">
+									{job.bullets.map((item) => <li class={bullet}><CvRichText text={item} /></li>)}
+								</ul>
+								{"stack" in job && job.stack && <p class="mt-4 mb-0 font-oz-mono text-dim text-xs tracking-[0.03em]">STACK <span class="text-border-strong">{"//"}</span> {job.stack}</p>}
+							</article>
+						))}
+					</div>
+				</section>
+
+				<section aria-labelledby="cv-education">
+					<div class={sectionHeading}><span class={sectionNumber}>05</span><h2 class={sectionTitle} id="cv-education">Education</h2></div>
+					<div class="mt-5 grid gap-5">
+						{cv.education.map((entry) => (
+							<div class="grid gap-1 sm:grid-cols-[1fr_auto] sm:gap-6">
+								<p class="m-0">
+									<strong class="font-semibold text-foreground">{entry.degree}</strong>{"detail" in entry && ` — ${entry.detail}`}
+									<br /><span class="text-dim text-sm">{entry.school}</span>
+								</p>
+								<p class="m-0 font-oz-mono text-accent text-xs tracking-[0.04em] sm:pt-1.5">{entry.period}</p>
+							</div>
+						))}
+					</div>
+				</section>
+
+				<section aria-labelledby="cv-languages">
+					<div class={sectionHeading}><span class={sectionNumber}>06</span><h2 class={sectionTitle} id="cv-languages">Languages</h2></div>
+					<ul class="mt-5 flex list-none flex-wrap gap-x-8 gap-y-2 p-0">
+						{cv.languages.map((language) => <li><strong class="font-semibold text-foreground">{language.name}</strong> — {language.level}</li>)}
+					</ul>
+				</section>
+			</div>
+		</article>
+	</PageContainer>
+</BaseLayout>

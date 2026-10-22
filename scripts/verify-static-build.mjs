@@ -10,6 +10,7 @@ const analyticsExpected =
 const pages = {
 	"404.html": { noindex: true, title: "Not Found | OzmahDev" },
 	"aperture/index.html": { noindex: true, title: "The Lab | OzmahDev" },
+	"cv/index.html": { noindex: true, title: "CV | OzmahDev" },
 	"contact/index.html": {
 		canonical: "https://ozmah.dev/contact",
 		currentNavigationHref: "/contact",
